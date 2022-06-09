@@ -72,22 +72,22 @@ const Navbar = () => {
         </Link>
 
         <div className="flex flex-1 items-center space-x-4 text-gray-700 md:flex-initial">
-          //<button
+          <button
             className="flex flex-1 items-center justify-between rounded-lg bg-gray-100 px-2.5 py-1.5 hover:opacity-80 dark:bg-gray-800 dark:text-white md:w-48"
             onClick={openSearchBox}
           >
-            //<div className="flex items-center space-x-2">
-              //<FontAwesomeIcon className="h-4 w-4" icon="search" />
-              //<span className="truncate text-sm font-medium">{t('Search ...')}</span>
-            //</div>
+            <div className="flex items-center space-x-2">
+              <FontAwesomeIcon className="h-4 w-4" icon="search" />
+              <span className="truncate text-sm font-medium">{t('Search ...')}</span>
+            </div>
 
-            //<div className="hidden items-center space-x-1 md:flex">
-              //<div className="rounded-lg bg-gray-200 px-2 py-1 text-xs font-medium dark:bg-gray-700">
-                //{os === 'mac' ? '⌘' : 'Ctrl'}
-              //</div>
-              //<div className="rounded-lg bg-gray-200 px-2 py-1 text-xs font-medium dark:bg-gray-700">K</div>
-            //</div>
-          //</button>
+            <div className="hidden items-center space-x-1 md:flex">
+              <div className="rounded-lg bg-gray-200 px-2 py-1 text-xs font-medium dark:bg-gray-700">
+                {os === 'mac' ? '⌘' : 'Ctrl'}
+              </div>
+              <div className="rounded-lg bg-gray-200 px-2 py-1 text-xs font-medium dark:bg-gray-700">K</div>
+            </div>
+          </button>
 
           <SwitchLang />
 
