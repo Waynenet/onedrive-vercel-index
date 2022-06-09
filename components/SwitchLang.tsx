@@ -36,6 +36,7 @@ const SwitchLang = () => {
       <Menu>
         <Menu.Button className="flex items-center space-x-1.5 hover:opacity-80 dark:text-white">
           <FontAwesomeIcon className="h-4 w-4" icon="language" />
+          <span className="hidden text-sm font-medium md:inline-block">{t('Language')}</span>
           <FontAwesomeIcon className="h-3 w-3" icon="chevron-down" />
         </Menu.Button>
 
