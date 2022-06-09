@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useCookies, withCookies } from 'react-cookie'
 
+import { useTranslation } from 'next-i18next'
+
 // https://headlessui.dev/react/menu#integrating-with-next-js
 const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {
   return (
@@ -31,6 +33,8 @@ const SwitchLang = () => {
 
   const [_, setCookie] = useCookies(['NEXT_LOCALE'])
 
+  const { t } = useTranslation()
+  
   return (
     <div className="relative">
       <Menu>
