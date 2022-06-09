@@ -104,6 +104,7 @@
   "Stored! Going home...": "Stored! Going home...",
   "Storing tokens": "Storing tokens",
   "Success! The API returned what we needed.": "Success! The API returned what we needed.",
+  "Telegram": "Telegram",
   "The authorisation code extracted is:": "The authorisation code extracted is:",
   "The OAuth link for getting the authorisation code has been created. Click on the link above to get the <2>authorisation code</2>. Your browser willopen a new tab to Microsoft's account login page. After logging in and authenticating with your Microsoft account, you will be redirected to a blank page on localhost. Paste <6>the entire redirected URL</6> down below.": "The OAuth link for getting the authorisation code has been created. Click on the link above to get the <2>authorisation code</2>. Your browser willopen a new tab to Microsoft's account login page. After logging in and authenticating with your Microsoft account, you will be redirected to a blank page on localhost. Paste <6>the entire redirected URL</6> down below.",
   "These tokens are used to authenticate yourself into password protected folders, ": "These tokens are used to authenticate yourself into password protected folders, ",
