@@ -49,12 +49,8 @@ module.exports = {
   // you provide. See the documentation for details.
   links: [
     {
-      name: 'Home',
-      link: 'https://soga.ml',
-    },
-    {
-      name: 'Blog',
-      link: 'https://3301.cf',
+      name: 'Telegram',
+      link: 'https://t.me/Wayne_Wu',
     },
   ],
 
