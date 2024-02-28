@@ -52,7 +52,7 @@ dependencies:
     version: 10.3.0
   i18next:
     specifier: ^23.0.0
-    version: 23.0.0
+    version: 23.10.0
   ioredis:
     specifier: ^5.3.0
     version: 5.3.2
@@ -67,7 +67,7 @@ dependencies:
     version: 13.1.6(react-dom@18.2.0)(react@18.2.0)
   next-i18next:
     specifier: ^14.0.0
-    version: 14.0.3(i18next@23.0.0)(next@13.1.6)(react-i18next@13.2.2)(react@18.2.0)
+    version: 14.0.3(i18next@23.10.0)(next@13.1.6)(react-i18next@13.2.2)(react@18.2.0)
   nextjs-progressbar:
     specifier: ^0.0.16
     version: 0.0.16(next@13.1.6)(react@18.2.0)
@@ -103,7 +103,7 @@ dependencies:
     version: 4.3.3(react-dom@18.2.0)(react@18.2.0)
   react-i18next:
     specifier: ^13.0.0
-    version: 13.2.2(i18next@23.0.0)(react-dom@18.2.0)(react@18.2.0)
+    version: 13.2.2(i18next@23.10.0)(react-dom@18.2.0)(react@18.2.0)
   react-markdown:
     specifier: ^8.0.5
     version: 8.0.7(@types/react@18.2.60)(react@18.2.0)
@@ -224,7 +224,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
-    dev: true
 
   /@esbuild/aix-ppc64@0.20.1:
     resolution: {integrity: sha512-m55cpeupQ2DbuRGQMMZDzbv9J9PgVelPjlcmM5kxHnrBdBx6REaEd7LamYV7Dm8N7rCyR/XwU6rVP8ploKtIkA==}
@@ -2927,17 +2926,10 @@ packages:
       - supports-color
     dev: true
 
-  /i18next@23.0.0:
-    resolution: {integrity: sha512-nwggKtf7ZQWq1t21qGUGhrwoyRWHJNTy016jOPl6ZDfxGZAUyK1FWm3EgELgfO4ujNifCHmxJ6pyDdcX7cagWg==}
-    dependencies:
-      '@babel/runtime': 7.22.6
-    dev: false
-
   /i18next@23.10.0:
     resolution: {integrity: sha512-/TgHOqsa7/9abUKJjdPeydoyDc0oTi/7u9F8lMSj6ufg4cbC1Oj3f/Jja7zj7WRIhEQKB7Q4eN6y68I9RDxxGQ==}
     dependencies:
       '@babel/runtime': 7.23.9
-    dev: true
 
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
@@ -4230,7 +4222,7 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-i18next@14.0.3(i18next@23.0.0)(next@13.1.6)(react-i18next@13.2.2)(react@18.2.0):
+  /next-i18next@14.0.3(i18next@23.10.0)(next@13.1.6)(react-i18next@13.2.2)(react@18.2.0):
     resolution: {integrity: sha512-FtnjRMfhlamk8YyeyWqd+pndNL+3er83iMZnH4M4mhiGA93l0+vtBUvuObgOAMHDJGLLB2SS2xOOZq69oiJh7A==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -4243,11 +4235,11 @@ packages:
       '@types/hoist-non-react-statics': 3.3.1
       core-js: 3.27.2
       hoist-non-react-statics: 3.3.2
-      i18next: 23.0.0
+      i18next: 23.10.0
       i18next-fs-backend: 2.2.0
       next: 13.1.6(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
-      react-i18next: 13.2.2(i18next@23.0.0)(react-dom@18.2.0)(react@18.2.0)
+      react-i18next: 13.2.2(i18next@23.10.0)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /next-tick@1.1.0:
@@ -4880,7 +4872,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-i18next@13.2.2(i18next@23.0.0)(react-dom@18.2.0)(react@18.2.0):
+  /react-i18next@13.2.2(i18next@23.10.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-+nFUkbRByFwnrfDcYqvzBuaeZb+nACHx+fAWN/pZMddWOCJH5hoc21+Sa/N/Lqi6ne6/9wC/qRGOoQhJa6IkEQ==}
     peerDependencies:
       i18next: '>= 23.2.3'
@@ -4895,7 +4887,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.6
       html-parse-stringify: 3.0.1
-      i18next: 23.0.0
+      i18next: 23.10.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -5063,7 +5055,6 @@ packages:
 
   /regenerator-runtime@0.14.1:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
-    dev: true
 
   /regexp.prototype.flags@1.5.1:
     resolution: {integrity: sha512-sy6TXMN+hnP/wMy+ISxg3krXx7BAtWVO4UouuCN/ziM9UEne0euamVNafDfvC83bRNr95y0V5iijeDQFUNpvrg==}
