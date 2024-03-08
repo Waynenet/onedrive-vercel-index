@@ -67,7 +67,7 @@ dependencies:
     version: 13.5.6(react-dom@18.2.0)(react@18.2.0)
   next-i18next:
     specifier: ^14.0.0
-    version: 14.0.3(i18next@23.10.1)(next@13.5.6)(react-i18next@13.5.0)(react@18.2.0)
+    version: 14.0.3(i18next@23.10.1)(next@13.5.6)(react-i18next@14.1.0)(react@18.2.0)
   nextjs-progressbar:
     specifier: ^0.0.16
     version: 0.0.16(next@13.5.6)(react@18.2.0)
@@ -102,8 +102,8 @@ dependencies:
     specifier: ^4.3.3
     version: 4.5.0(react-dom@18.2.0)(react@18.2.0)
   react-i18next:
-    specifier: ^13.0.0
-    version: 13.5.0(i18next@23.10.1)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^14.0.0
+    version: 14.1.0(i18next@23.10.1)(react-dom@18.2.0)(react@18.2.0)
   react-markdown:
     specifier: ^8.0.5
     version: 8.0.7(@types/react@18.2.64)(react@18.2.0)
@@ -4216,7 +4216,7 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-i18next@14.0.3(i18next@23.10.1)(next@13.5.6)(react-i18next@13.5.0)(react@18.2.0):
+  /next-i18next@14.0.3(i18next@23.10.1)(next@13.5.6)(react-i18next@14.1.0)(react@18.2.0):
     resolution: {integrity: sha512-FtnjRMfhlamk8YyeyWqd+pndNL+3er83iMZnH4M4mhiGA93l0+vtBUvuObgOAMHDJGLLB2SS2xOOZq69oiJh7A==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -4233,7 +4233,7 @@ packages:
       i18next-fs-backend: 2.2.0
       next: 13.5.6(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
-      react-i18next: 13.5.0(i18next@23.10.1)(react-dom@18.2.0)(react@18.2.0)
+      react-i18next: 14.1.0(i18next@23.10.1)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /next-tick@1.1.0:
@@ -4861,8 +4861,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-i18next@13.5.0(i18next@23.10.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-CFJ5NDGJ2MUyBohEHxljOq/39NQ972rh1ajnadG9BjTk+UXbHLq4z5DKEbEQBDoIhUmmbuS/fIMJKo6VOax1HA==}
+  /react-i18next@14.1.0(i18next@23.10.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-3KwX6LHpbvGQ+sBEntjV4sYW3Zovjjl3fpoHbUwSgFHf0uRBcbeCBLR5al6ikncI5+W0EFb71QXZmfop+J6NrQ==}
     peerDependencies:
       i18next: '>= 23.2.3'
       react: '>= 16.8.0'
