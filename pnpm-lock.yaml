@@ -164,7 +164,7 @@ importers:
         version: 6.2.0
       '@types/react-syntax-highlighter':
         specifier: ^15.5.6
-        version: 15.5.12
+        version: 15.5.13
       autoprefixer:
         specifier: ^10.4.13
         version: 10.4.19(postcss@8.4.38)
@@ -631,8 +631,8 @@ packages:
   '@types/react-pdf@6.2.0':
     resolution: {integrity: sha512-OSCYmrfaJvpXkM5V4seUMAhUDOAOqbGQf9kwv14INyTf7AjDs2ukfkkQrLWRQ8OjWrDklbXYWh5l7pT7l0N76g==}
 
-  '@types/react-syntax-highlighter@15.5.12':
-    resolution: {integrity: sha512-wCuk2HWXqEkHFzNMYmdMgyVRoxJEndutEBz3rKqmcrnkwGDtwT8gMtRaTPzXWPVasJ9NydQ54dbosg2sW65PCg==}
+  '@types/react-syntax-highlighter@15.5.13':
+    resolution: {integrity: sha512-uLGJ87j6Sz8UaBAooU0T6lWJ0dBmjZgN1PZTrj05TNql2/XpC6+4HhMT5syIdFUUt+FASfCeLLv4kBygNU+8qA==}
 
   '@types/react@18.3.1':
     resolution: {integrity: sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==}
@@ -3669,7 +3669,7 @@ snapshots:
     transitivePeerDependencies:
       - worker-loader
 
-  '@types/react-syntax-highlighter@15.5.12':
+  '@types/react-syntax-highlighter@15.5.13':
     dependencies:
       '@types/react': 18.3.1
 
