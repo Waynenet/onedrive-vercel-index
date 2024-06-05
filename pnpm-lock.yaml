@@ -185,10 +185,10 @@ importers:
         version: 8.4.38
       prettier:
         specifier: ^3.0.0
-        version: 3.3.0
+        version: 3.3.1
       prettier-plugin-tailwindcss:
         specifier: ^0.5.0
-        version: 0.5.0(prettier@3.3.0)
+        version: 0.5.0(prettier@3.3.1)
       tailwindcss:
         specifier: ^3.2.4
         version: 3.4.3
@@ -2552,8 +2552,8 @@ packages:
       prettier-plugin-twig-melody:
         optional: true
 
-  prettier@3.3.0:
-    resolution: {integrity: sha512-J9odKxERhCQ10OC2yb93583f6UnYutOeiV5i0zEDS7UGTdUt0u+y8erxl3lBKvwo/JHyyoEdXjwp4dke9oyZ/g==}
+  prettier@3.3.1:
+    resolution: {integrity: sha512-7CAwy5dRsxs8PHXT3twixW9/OEll8MLE0VRPCJyl7CkS6VHGPSlsVaWTiASPTyGyYRyApxlaWTzwUxVNrhcwDg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -4391,7 +4391,7 @@ snapshots:
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.7
       eslint-import-resolver-typescript: 3.5.3(eslint-plugin-import@2.28.1(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.1.6))(eslint-import-resolver-typescript@3.5.3)(eslint@8.57.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.1.6))(eslint-import-resolver-typescript@3.5.3(eslint-plugin-import@2.28.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.7.1(eslint@8.57.0)
       eslint-plugin-react: 7.33.2(eslint@8.57.0)
       eslint-plugin-react-hooks: 5.0.0-canary-7118f5dd7-20230705(eslint@8.57.0)
@@ -4418,7 +4418,7 @@ snapshots:
       debug: 4.3.4
       enhanced-resolve: 5.12.0
       eslint: 8.57.0
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.1.6))(eslint-import-resolver-typescript@3.5.3)(eslint@8.57.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.1.6))(eslint-import-resolver-typescript@3.5.3(eslint-plugin-import@2.28.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
       get-tsconfig: 4.3.0
       globby: 13.1.3
       is-core-module: 2.13.1
@@ -4438,7 +4438,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.1.6))(eslint-import-resolver-typescript@3.5.3)(eslint@8.57.0):
+  eslint-plugin-import@2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.1.6))(eslint-import-resolver-typescript@3.5.3(eslint-plugin-import@2.28.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.6
       array.prototype.findlastindex: 1.2.3
@@ -6145,11 +6145,11 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-tailwindcss@0.5.0(prettier@3.3.0):
+  prettier-plugin-tailwindcss@0.5.0(prettier@3.3.1):
     dependencies:
-      prettier: 3.3.0
+      prettier: 3.3.1
 
-  prettier@3.3.0: {}
+  prettier@3.3.1: {}
 
   preview-office-docs@1.0.2(react@18.3.1):
     dependencies:
