@@ -121,7 +121,7 @@ importers:
         version: 1.1.1(react@18.3.1)
       rehype-katex:
         specifier: ^7.0.0
-        version: 7.0.0
+        version: 7.0.1
       rehype-raw:
         specifier: ^7.0.0
         version: 7.0.0
@@ -578,6 +578,9 @@ packages:
   '@types/hast@3.0.1':
     resolution: {integrity: sha512-hs/iBJx2aydugBQx5ETV3ZgeSS0oIreQrFJ4bjBl0XvM4wAmDjFEALY7p0rTSLt2eL+ibjRAAs9dTPiCLtmbqQ==}
 
+  '@types/hast@3.0.4':
+    resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
+
   '@types/hoist-non-react-statics@3.3.1':
     resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
 
@@ -590,8 +593,8 @@ packages:
   '@types/katex@0.11.1':
     resolution: {integrity: sha512-DUlIj2nk0YnJdlWgsFuVKcX27MLW0KbKmGVoUHmFr+74FYYNUDAaj9ZqTADvsbE8rfxuVmSFc7KczYn5Y09ozg==}
 
-  '@types/katex@0.16.3':
-    resolution: {integrity: sha512-CeVMX9EhVUW8MWnei05eIRks4D5Wscw/W9Byz1s3PA+yJvcdvq9SaDjiUKvRvEgjpdTyJMjQA43ae4KTwsvOPg==}
+  '@types/katex@0.16.7':
+    resolution: {integrity: sha512-HMwFiRujE5PjrgwHQ25+bsLJgowjGjm5Z8FVSf0N6PwgJrwxH0QxzHYDcKsTfV3wva0vzrpqMTJS2jXPr5BMEQ==}
 
   '@types/localforage@0.0.34':
     resolution: {integrity: sha512-tJxahnjm9dEI1X+hQSC5f2BSd/coZaqbIl1m3TCl0q9SVuC52XcXfV0XmoCU1+PmjyucuVITwoTnN8OlTbEXXA==}
@@ -645,8 +648,14 @@ packages:
   '@types/unist@2.0.10':
     resolution: {integrity: sha512-IfYcSBWE3hLpBg8+X2SEa8LVkJdJEkT2Ese2aaLs3ptGdVtABxndrMaxuFlQ1qdFf9Q5rDvDpxI3WwgvKFAsQA==}
 
+  '@types/unist@2.0.11':
+    resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==}
+
   '@types/unist@3.0.2':
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
+
+  '@types/unist@3.0.3':
+    resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
 
   '@typescript-eslint/parser@5.49.0':
     resolution: {integrity: sha512-veDlZN9mUhGqU31Qiv2qEp+XrJj5fgZpJ8PW30sHU+j/8/e5ruAhLaVDAeznS7A7i4ucb/s8IozpDtt9NqCkZg==}
@@ -1594,8 +1603,8 @@ packages:
   hast-util-to-parse5@8.0.0:
     resolution: {integrity: sha512-3KKrV5ZVI8if87DVSi1vDeByYrkGzg4mEfeu4alwgmmIeARiBLKCZS2uw5Gb6nU9x9Yufyj3iudm6i7nl52PFw==}
 
-  hast-util-to-text@4.0.0:
-    resolution: {integrity: sha512-EWiE1FSArNBPUo1cKWtzqgnuRQwEeQbQtnFJRYV1hb1BWDgrAlBU0ExptvZMM/KSA82cDpm2sFGf3Dmc5Mza3w==}
+  hast-util-to-text@4.0.2:
+    resolution: {integrity: sha512-KK6y/BN8lbaq654j7JgBydev7wuNMcID54lkRav1P0CaE1e47P72AWWPiGKXTJU271ooYzcvTAn/Zt0REnvc7A==}
 
   hast-util-whitespace@2.0.1:
     resolution: {integrity: sha512-nAxA0v8+vXSBDt3AnRUNjyRIQ0rD+ntpbAp4LnPkumc5M9yUbSMa4XDU9Q6etY4f1Wp4bNgvc1yjiZtsTTrSng==}
@@ -1875,8 +1884,8 @@ packages:
     resolution: {integrity: sha512-jZxYuKCma3VS5UuxOx/rFV1QyGSl3Uy/i0kTJF3HgQ5xMinCQVF8Zd4bMY/9aI9b9A2pjIBOsjSSm68ykTAr8w==}
     hasBin: true
 
-  katex@0.16.9:
-    resolution: {integrity: sha512-fsSYjWS0EEOwvy81j3vRA8TEAhQhKiqO+FQaKWp0m39qwOzHVBgAUBIXWj1pB+O2W3fIpNa6Y9KSKCVbfPhyAQ==}
+  katex@0.16.11:
+    resolution: {integrity: sha512-RQrI8rlHY92OLf3rho/Ts8i/XvjgguEjOkO1BEXcU3N8BqPpSzBNwV/G0Ukr+P/l3ivvJUE/Fa/CwbS6HesGNQ==}
     hasBin: true
 
   kleur@4.1.4:
@@ -2750,8 +2759,8 @@ packages:
     resolution: {integrity: sha512-sy6TXMN+hnP/wMy+ISxg3krXx7BAtWVO4UouuCN/ziM9UEne0euamVNafDfvC83bRNr95y0V5iijeDQFUNpvrg==}
     engines: {node: '>= 0.4'}
 
-  rehype-katex@7.0.0:
-    resolution: {integrity: sha512-h8FPkGE00r2XKU+/acgqwWUlyzve1IiOKwsEkg4pDL3k48PiE0Pt+/uLtVHDVkN1yA4iurZN6UES8ivHVEQV6Q==}
+  rehype-katex@7.0.1:
+    resolution: {integrity: sha512-OiM2wrZ/wuhKkigASodFoo8wimG3H12LWQaH8qSPVJn9apWKFSH3YOCtbKpBorTVw/eI7cuT21XBbvwEswbIOA==}
 
   rehype-raw@7.0.0:
     resolution: {integrity: sha512-/aE8hCfKlQeA8LmyeyQvQF3eBiLRGNlfBJEvWH7ivp9sBqs7TNqBL5X3v157rM4IFETqDnIOO+z5M/biZbo9Ww==}
@@ -3235,6 +3244,9 @@ packages:
   vfile@6.0.1:
     resolution: {integrity: sha512-1bYqc7pt6NIADBJ98UiG0Bn/CHIVOoZ/IyEkqIruLg0mE1BKzkOXY2D6CSqQIcKqgadppE5lrxgWXJmXd7zZJw==}
 
+  vfile@6.0.2:
+    resolution: {integrity: sha512-zND7NlS8rJYb/sPqkb13ZvbbUoExdbi4w3SfRrMq6R3FvnLQmmfpajJNITuuYm6AZ5uao9vy4BAos3EXBPf2rg==}
+
   vinyl-contents@2.0.0:
     resolution: {integrity: sha512-cHq6NnGyi2pZ7xwdHSW1v4Jfnho4TEGtxZHw01cmnc8+i7jgR6bRnED/LbrKan/Q7CvVLbnvA5OepnhbpjBZ5Q==}
     engines: {node: '>=10.13.0'}
@@ -3615,6 +3627,10 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.2
 
+  '@types/hast@3.0.4':
+    dependencies:
+      '@types/unist': 3.0.3
+
   '@types/hoist-non-react-statics@3.3.1':
     dependencies:
       '@types/react': 18.3.3
@@ -3629,7 +3645,7 @@ snapshots:
 
   '@types/katex@0.11.1': {}
 
-  '@types/katex@0.16.3': {}
+  '@types/katex@0.16.7': {}
 
   '@types/localforage@0.0.34':
     dependencies:
@@ -3691,7 +3707,11 @@ snapshots:
 
   '@types/unist@2.0.10': {}
 
+  '@types/unist@2.0.11': {}
+
   '@types/unist@3.0.2': {}
+
+  '@types/unist@3.0.3': {}
 
   '@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.5.4)':
     dependencies:
@@ -4395,7 +4415,7 @@ snapshots:
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.7
       eslint-import-resolver-typescript: 3.5.3(eslint-plugin-import@2.28.1(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.5.3(eslint-plugin-import@2.28.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.5.3)(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.7.1(eslint@8.57.0)
       eslint-plugin-react: 7.33.2(eslint@8.57.0)
       eslint-plugin-react-hooks: 5.0.0-canary-7118f5dd7-20230705(eslint@8.57.0)
@@ -4422,7 +4442,7 @@ snapshots:
       debug: 4.3.4
       enhanced-resolve: 5.12.0
       eslint: 8.57.0
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.5.3(eslint-plugin-import@2.28.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.5.3)(eslint@8.57.0)
       get-tsconfig: 4.3.0
       globby: 13.1.3
       is-core-module: 2.15.0
@@ -4442,7 +4462,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.5.3(eslint-plugin-import@2.28.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0):
+  eslint-plugin-import@2.28.1(@typescript-eslint/parser@5.49.0(eslint@8.57.0)(typescript@5.5.4))(eslint-import-resolver-typescript@3.5.3)(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.6
       array.prototype.findlastindex: 1.2.3
@@ -4850,24 +4870,24 @@ snapshots:
 
   hast-util-from-dom@5.0.0:
     dependencies:
-      '@types/hast': 3.0.1
+      '@types/hast': 3.0.4
       hastscript: 8.0.0
       web-namespaces: 2.0.1
 
   hast-util-from-html-isomorphic@2.0.0:
     dependencies:
-      '@types/hast': 3.0.1
+      '@types/hast': 3.0.4
       hast-util-from-dom: 5.0.0
       hast-util-from-html: 2.0.1
       unist-util-remove-position: 5.0.0
 
   hast-util-from-html@2.0.1:
     dependencies:
-      '@types/hast': 3.0.1
+      '@types/hast': 3.0.4
       devlop: 1.1.0
       hast-util-from-parse5: 8.0.1
       parse5: 7.1.2
-      vfile: 6.0.1
+      vfile: 6.0.2
       vfile-message: 4.0.2
 
   hast-util-from-parse5@8.0.1:
@@ -4883,7 +4903,7 @@ snapshots:
 
   hast-util-is-element@3.0.0:
     dependencies:
-      '@types/hast': 3.0.1
+      '@types/hast': 3.0.4
 
   hast-util-parse-selector@2.2.5: {}
 
@@ -4917,10 +4937,10 @@ snapshots:
       web-namespaces: 2.0.1
       zwitch: 2.0.2
 
-  hast-util-to-text@4.0.0:
+  hast-util-to-text@4.0.2:
     dependencies:
-      '@types/hast': 3.0.1
-      '@types/unist': 3.0.2
+      '@types/hast': 3.0.4
+      '@types/unist': 3.0.3
       hast-util-is-element: 3.0.0
       unist-util-find-after: 5.0.0
 
@@ -5236,7 +5256,7 @@ snapshots:
     dependencies:
       commander: 8.3.0
 
-  katex@0.16.9:
+  katex@0.16.11:
     dependencies:
       commander: 8.3.0
 
@@ -5350,7 +5370,7 @@ snapshots:
   mdast-util-from-markdown@2.0.0:
     dependencies:
       '@types/mdast': 4.0.1
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
       decode-named-character-reference: 1.0.2
       devlop: 1.1.0
       mdast-util-to-string: 4.0.0
@@ -5457,7 +5477,7 @@ snapshots:
   mdast-util-to-markdown@1.3.0:
     dependencies:
       '@types/mdast': 3.0.10
-      '@types/unist': 2.0.10
+      '@types/unist': 2.0.11
       longest-streak: 3.0.1
       mdast-util-to-string: 3.1.0
       micromark-util-decode-string: 1.0.2
@@ -5467,7 +5487,7 @@ snapshots:
   mdast-util-to-markdown@2.1.0:
     dependencies:
       '@types/mdast': 4.0.1
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
       longest-streak: 3.0.1
       mdast-util-phrasing: 4.0.0
       mdast-util-to-string: 4.0.0
@@ -6372,15 +6392,15 @@ snapshots:
       define-properties: 1.2.1
       set-function-name: 2.0.1
 
-  rehype-katex@7.0.0:
+  rehype-katex@7.0.1:
     dependencies:
-      '@types/hast': 3.0.1
-      '@types/katex': 0.16.3
+      '@types/hast': 3.0.4
+      '@types/katex': 0.16.7
       hast-util-from-html-isomorphic: 2.0.0
-      hast-util-to-text: 4.0.0
-      katex: 0.16.9
+      hast-util-to-text: 4.0.2
+      katex: 0.16.11
       unist-util-visit-parents: 6.0.1
-      vfile: 6.0.1
+      vfile: 6.0.2
 
   rehype-raw@7.0.0:
     dependencies:
@@ -6835,11 +6855,11 @@ snapshots:
       extend: 3.0.2
       is-plain-obj: 4.1.0
       trough: 2.2.0
-      vfile: 6.0.1
+      vfile: 6.0.2
 
   unist-util-find-after@5.0.0:
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
       unist-util-is: 6.0.0
 
   unist-util-generated@2.0.1: {}
@@ -6850,7 +6870,7 @@ snapshots:
 
   unist-util-is@6.0.0:
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
 
   unist-util-position@4.0.4:
     dependencies:
@@ -6862,7 +6882,7 @@ snapshots:
 
   unist-util-remove-position@5.0.0:
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
       unist-util-visit: 5.0.0
 
   unist-util-stringify-position@3.0.3:
@@ -6871,7 +6891,7 @@ snapshots:
 
   unist-util-stringify-position@4.0.0:
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
 
   unist-util-visit-parents@5.1.3:
     dependencies:
@@ -6880,7 +6900,7 @@ snapshots:
 
   unist-util-visit-parents@6.0.1:
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
       unist-util-is: 6.0.0
 
   unist-util-visit@4.1.2:
@@ -6974,6 +6994,12 @@ snapshots:
   vfile@6.0.1:
     dependencies:
       '@types/unist': 3.0.2
+      unist-util-stringify-position: 4.0.0
+      vfile-message: 4.0.2
+
+  vfile@6.0.2:
+    dependencies:
+      '@types/unist': 3.0.3
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
