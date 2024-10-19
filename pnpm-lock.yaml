@@ -148,8 +148,8 @@ importers:
         specifier: ^4.0.2
         version: 4.2.2
       '@types/node':
-        specifier: 18.19.56
-        version: 18.19.56
+        specifier: 18.19.57
+        version: 18.19.57
       '@types/react':
         specifier: 18.3.11
         version: 18.3.11
@@ -614,8 +614,8 @@ packages:
   '@types/ms@0.7.34':
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
 
-  '@types/node@18.19.56':
-    resolution: {integrity: sha512-4EMJlWwwGnVPflJAtM14p9eVSa6BOv5b92mCsh5zcM1UagNtEtrbbtaE6WE1tw2TabavatnwqXjlIpcAEuJJNg==}
+  '@types/node@18.19.57':
+    resolution: {integrity: sha512-I2ioBd/IPrYDMv9UNR5NlPElOZ68QB7yY5V2EsLtSrTO0LM0PnCEFF9biLWHf5k+sIy4ohueCV9t4gk1AEdlVA==}
 
   '@types/nprogress@0.2.0':
     resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
@@ -3611,7 +3611,7 @@ snapshots:
 
   '@types/cors@2.8.17':
     dependencies:
-      '@types/node': 18.19.56
+      '@types/node': 18.19.57
 
   '@types/crypto-js@4.2.2': {}
 
@@ -3673,7 +3673,7 @@ snapshots:
 
   '@types/ms@0.7.34': {}
 
-  '@types/node@18.19.56':
+  '@types/node@18.19.57':
     dependencies:
       undici-types: 5.26.5
 
