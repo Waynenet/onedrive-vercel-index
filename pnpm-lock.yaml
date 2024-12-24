@@ -64,7 +64,7 @@ importers:
         version: 3.10.1
       mpegts.js:
         specifier: ^1.7.2
-        version: 1.7.3
+        version: 1.8.0
       next:
         specifier: ^15.0.0
         version: 15.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2489,8 +2489,8 @@ packages:
     resolution: {integrity: sha512-IXnMcJ6ZyTuhRmJSjzvHSRhlVPiN9Jwc6e59V0bEJ0ba6OBeX2L0E+mRN1QseeOF4mM+F1Rit6Nh7o+rl2Yn/A==}
     engines: {node: '>0.9'}
 
-  mpegts.js@1.7.3:
-    resolution: {integrity: sha512-kqZ1C1IsbAQN72cK8vMrzKeM7hwrwSBbFAwVAc7PPweOeoZxCANrc7fAVDKMfYUzxdNkMTnec9tVmlxmKZB0TQ==}
+  mpegts.js@1.8.0:
+    resolution: {integrity: sha512-ZtujqtmTjWgcDDkoOnLvrOKUTO/MKgLHM432zGDI8oPaJ0S+ebPxg1nEpDpLw6I7KmV/GZgUIrfbWi3qqEircg==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -3575,8 +3575,9 @@ packages:
     resolution: {integrity: sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==}
     engines: {node: '>= 8'}
 
-  webworkify-webpack@2.1.5:
-    resolution: {integrity: sha512-2akF8FIyUvbiBBdD+RoHpoTbHMQF2HwjcxfDvgztAX5YwbZNyrtfUMgvfgFVsgDhDPVTlkbb5vyasqDHfIDPQw==}
+  webworkify-webpack@https://codeload.github.com/xqq/webworkify-webpack/tar.gz/24d1e719b4a6cac37a518b2bb10fe124527ef4ef:
+    resolution: {tarball: https://codeload.github.com/xqq/webworkify-webpack/tar.gz/24d1e719b4a6cac37a518b2bb10fe124527ef4ef}
+    version: 2.1.5
 
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
@@ -6386,10 +6387,10 @@ snapshots:
 
   mktemp@0.4.0: {}
 
-  mpegts.js@1.7.3:
+  mpegts.js@1.8.0:
     dependencies:
       es6-promise: 4.2.8
-      webworkify-webpack: 2.1.5
+      webworkify-webpack: https://codeload.github.com/xqq/webworkify-webpack/tar.gz/24d1e719b4a6cac37a518b2bb10fe124527ef4ef
 
   mri@1.2.0: {}
 
@@ -7619,7 +7620,7 @@ snapshots:
 
   web-streams-polyfill@3.2.1: {}
 
-  webworkify-webpack@2.1.5: {}
+  webworkify-webpack@https://codeload.github.com/xqq/webworkify-webpack/tar.gz/24d1e719b4a6cac37a518b2bb10fe124527ef4ef: {}
 
   whatwg-encoding@3.1.1:
     dependencies:
