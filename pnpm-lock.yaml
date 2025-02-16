@@ -179,7 +179,7 @@ importers:
         version: 9.1.0(eslint@9.20.1(jiti@1.21.6))
       i18next-parser:
         specifier: ^9.0.0
-        version: 9.2.0
+        version: 9.3.0
       postcss:
         specifier: ^8.4.21
         version: 8.5.2
@@ -1893,8 +1893,8 @@ packages:
   i18next-fs-backend@2.2.0:
     resolution: {integrity: sha512-VOPHhdDX0M/csRqEw+9Ectpf6wvTIg1MZDfAHxc3JKnAlJz7fcZSAKAeyDohOq0xuLx57esYpJopIvBaRb0Bag==}
 
-  i18next-parser@9.2.0:
-    resolution: {integrity: sha512-gklLskE20rGocllHJ98NajhoXHttFIQN0KR18ZhLkFI1DkqBIp1/ag/zCln3P1iuek64iMgTxzW/0W3xM250OQ==}
+  i18next-parser@9.3.0:
+    resolution: {integrity: sha512-VaQqk/6nLzTFx1MDiCZFtzZXKKyBV6Dv0cJMFM/hOt4/BWHWRgYafzYfVQRUzotwUwjqeNCprWnutzD/YAGczg==}
     engines: {node: ^18.0.0 || ^20.0.0 || ^22.0.0, npm: '>=6', yarn: '>=1'}
     hasBin: true
 
@@ -5507,7 +5507,7 @@ snapshots:
 
   i18next-fs-backend@2.2.0: {}
 
-  i18next-parser@9.2.0:
+  i18next-parser@9.3.0:
     dependencies:
       '@babel/runtime': 7.26.9
       broccoli-plugin: 4.0.7
