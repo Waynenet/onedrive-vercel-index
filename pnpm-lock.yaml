@@ -109,7 +109,7 @@ importers:
         version: 15.5.2(i18next@25.2.1(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.5.4)
       react-markdown:
         specifier: ^8.0.5
-        version: 8.0.7(@types/react@18.3.20)(react@18.3.1)
+        version: 8.0.7(@types/react@18.3.23)(react@18.3.1)
       react-reader:
         specifier: ^1.0.2
         version: 1.2.2(react@18.3.1)
@@ -151,14 +151,14 @@ importers:
         specifier: 22.14.1
         version: 22.14.1
       '@types/react':
-        specifier: 18.3.20
-        version: 18.3.20
+        specifier: 18.3.23
+        version: 18.3.23
       '@types/react-copy-to-clipboard':
         specifier: ^5.0.4
         version: 5.0.7
       '@types/react-dom':
         specifier: ^18.0.10
-        version: 18.3.7(@types/react@18.3.20)
+        version: 18.3.7(@types/react@18.3.23)
       '@types/react-pdf':
         specifier: ^6.2.0
         version: 6.2.0
@@ -796,8 +796,8 @@ packages:
   '@types/react-syntax-highlighter@15.5.13':
     resolution: {integrity: sha512-uLGJ87j6Sz8UaBAooU0T6lWJ0dBmjZgN1PZTrj05TNql2/XpC6+4HhMT5syIdFUUt+FASfCeLLv4kBygNU+8qA==}
 
-  '@types/react@18.3.20':
-    resolution: {integrity: sha512-IPaCZN7PShZK/3t6Q87pfTkRm6oLTd4vztyoj+cbHUF1g3FfVb2tFIL79uCRKEfv16AhqDMBywP2VW3KIZUvcg==}
+  '@types/react@18.3.23':
+    resolution: {integrity: sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==}
 
   '@types/symlink-or-copy@1.2.2':
     resolution: {integrity: sha512-MQ1AnmTLOncwEf9IVU+B2e4Hchrku5N67NkgcAHW0p3sdzPe0FNMANxEm6OJUzPniEQGkeT3OROLlCwZJLWFZA==}
@@ -4079,12 +4079,12 @@ snapshots:
 
   '@types/hoist-non-react-statics@3.3.1':
     dependencies:
-      '@types/react': 18.3.20
+      '@types/react': 18.3.23
       hoist-non-react-statics: 3.3.2
 
   '@types/hoist-non-react-statics@3.3.6':
     dependencies:
-      '@types/react': 18.3.20
+      '@types/react': 18.3.23
       hoist-non-react-statics: 3.3.2
 
   '@types/json-schema@7.0.15': {}
@@ -4125,24 +4125,24 @@ snapshots:
 
   '@types/react-copy-to-clipboard@5.0.7':
     dependencies:
-      '@types/react': 18.3.20
+      '@types/react': 18.3.23
 
-  '@types/react-dom@18.3.7(@types/react@18.3.20)':
+  '@types/react-dom@18.3.7(@types/react@18.3.23)':
     dependencies:
-      '@types/react': 18.3.20
+      '@types/react': 18.3.23
 
   '@types/react-pdf@6.2.0':
     dependencies:
-      '@types/react': 18.3.20
+      '@types/react': 18.3.23
       pdfjs-dist: 2.16.105
     transitivePeerDependencies:
       - worker-loader
 
   '@types/react-syntax-highlighter@15.5.13':
     dependencies:
-      '@types/react': 18.3.20
+      '@types/react': 18.3.23
 
-  '@types/react@18.3.20':
+  '@types/react@18.3.23':
     dependencies:
       '@types/prop-types': 15.7.11
       csstype: 3.1.3
@@ -6852,11 +6852,11 @@ snapshots:
 
   react-is@18.2.0: {}
 
-  react-markdown@8.0.7(@types/react@18.3.20)(react@18.3.1):
+  react-markdown@8.0.7(@types/react@18.3.23)(react@18.3.1):
     dependencies:
       '@types/hast': 2.3.10
       '@types/prop-types': 15.7.11
-      '@types/react': 18.3.20
+      '@types/react': 18.3.23
       '@types/unist': 2.0.10
       comma-separated-tokens: 2.0.3
       hast-util-whitespace: 2.0.1
