@@ -115,7 +115,7 @@ importers:
         version: 1.2.2(react@18.3.1)
       react-syntax-highlighter:
         specifier: ^15.5.0
-        version: 15.6.3(react@18.3.1)
+        version: 15.6.5(react@18.3.1)
       react-use-system-theme:
         specifier: ^1.1.1
         version: 1.1.1(react@18.3.1)
@@ -2902,6 +2902,9 @@ packages:
   property-information@6.4.1:
     resolution: {integrity: sha512-OHYtXfu5aI2sS2LWFSN5rgJjrQ4pCy8i1jubJLe2QvMF8JJ++HXTUIVWFLfXJoaOfvYYjk2SN8J2wFUWIGXT4w==}
 
+  property-information@6.5.0:
+    resolution: {integrity: sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig==}
+
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
@@ -3005,8 +3008,8 @@ packages:
     peerDependencies:
       react: ^16.8.3 || ^17 || ^18
 
-  react-syntax-highlighter@15.6.3:
-    resolution: {integrity: sha512-HebdyA9r20hgmA0q8RyRJ4c/vB4E6KL2HeWb5MNjU3iJEiT2w9jfU2RJsmI6f3Cy3SGE5tm0AIkBzM/E7e9/lQ==}
+  react-syntax-highlighter@15.6.5:
+    resolution: {integrity: sha512-Sscw/qACcdp3UIuDVN+PhdKkQZTmAv55+RTzwTJZS+UFFpLilogVnKelDqHuc4E//d7lgEAo2dcDY9h4xhEtJw==}
     peerDependencies:
       react: '>= 0.14.0'
 
@@ -5455,7 +5458,7 @@ snapshots:
 
   hast-util-parse-selector@4.0.0:
     dependencies:
-      '@types/hast': 3.0.1
+      '@types/hast': 3.0.4
 
   hast-util-raw@9.0.1:
     dependencies:
@@ -5502,10 +5505,10 @@ snapshots:
 
   hastscript@8.0.0:
     dependencies:
-      '@types/hast': 3.0.1
+      '@types/hast': 3.0.4
       comma-separated-tokens: 2.0.3
       hast-util-parse-selector: 4.0.0
-      property-information: 6.4.1
+      property-information: 6.5.0
       space-separated-tokens: 2.0.2
 
   heimdalljs-logger@0.1.10:
@@ -6759,6 +6762,8 @@ snapshots:
 
   property-information@6.4.1: {}
 
+  property-information@6.5.0: {}
+
   proxy-from-env@1.1.0: {}
 
   punycode@2.3.0: {}
@@ -6865,7 +6870,7 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  react-syntax-highlighter@15.6.3(react@18.3.1):
+  react-syntax-highlighter@15.6.5(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.28.3
       highlight.js: 10.7.3
