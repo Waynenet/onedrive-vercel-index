@@ -65,7 +65,7 @@ const MarkdownPreview: FC<{
       children = '',
       inline,
       ...props
-    } {
+    }) {
       if (inline) {
         return (
           <code className={className} {...props}>
