@@ -63,7 +63,7 @@ const MarkdownPreview: FC<{
     code({
       className,
       children = '',
-      inline,
+      inline = false,
       ...props
     }) {
       if (inline) {
