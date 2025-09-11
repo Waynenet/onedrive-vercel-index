@@ -7,7 +7,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import { useTranslation } from 'next-i18next'
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { tomorrowNight } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 import 'katex/dist/katex.min.css'
 
@@ -33,13 +33,14 @@ const MarkdownPreview: FC<{
   // Custom renderer:
   // 明确地为 customRenderer 标注 Components 类型
   const customRenderer: Components = {
-    img: ({ src, ...props }) => {
+    // 修复了 alt 属性警告
+    img: ({ src, alt, ...props }) => {
       const finalSrc = isUrlAbsolute(src as string) ? src : `/api/?path=${parentPath}/${src}&raw=true`
       // eslint-disable-next-line @next/next/no-img-element
-      return <img src={finalSrc} {...props} />
+      return <img src={finalSrc} alt={alt} {...props} />
     },
 
-    // code 渲染器，不再使用 'inline' 属性
+    // code 渲染器，它不再使用 'inline' 属性
     code({ node, className, children, ...props }) {
       // 通过检查 className 中是否存在 'language-' 前缀来判断是否为代码块
       const match = /language-(\w+)/.exec(className || '')
