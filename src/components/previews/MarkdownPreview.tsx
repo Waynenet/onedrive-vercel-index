@@ -60,13 +60,11 @@ const MarkdownPreview: FC<{
       )
     },
     // code: to render code blocks with react-syntax-highlighter
-    code({
-      className = '',
-      children = '',
-      inline = false,
-      ...props
-    }) {
+    // 1. 为 className 和 inline 提供默认值
+    // 2. 移除 children 的默认值，以接受完整的 ReactNode 类型
+    code({ className = '', children, inline = false, ...props }) {
       if (inline) {
+        // 对于内联代码，我们直接渲染 children，因为它可能是复杂的 ReactNode
         return (
           <code className={className} {...props}>
             {children}
@@ -75,9 +73,21 @@ const MarkdownPreview: FC<{
       }
 
       const match = /language-(\w+)/.exec(className || '')
+      
+      // 3. 健壮地将 children 转换为字符串
+      //    React 的子节点可能是一个数组，我们需要先把它拍平
+      const childrenAsString = Array.isArray(children)
+        ? children.join('')
+        : String(children)
+
       return (
-        <SyntaxHighlighter language={match ? match[1] : 'language-text'} style={tomorrowNight} PreTag="div" {...props}>
-          {String(children).replace(/\n$/, '')}
+        <SyntaxHighlighter
+          language={match ? match[1] : 'language-text'}
+          style={tomorrowNight}
+          PreTag="div"
+          {...props}
+        >
+          {childrenAsString.replace(/\n$/, '')}
         </SyntaxHighlighter>
       )
     },
