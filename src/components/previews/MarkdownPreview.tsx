@@ -32,32 +32,35 @@ const MarkdownPreview: FC<{
   const isUrlAbsolute = (url: string | string[]) => url.indexOf('://') > 0 || url.indexOf('//') === 0
   // Custom renderer:
   const customRenderer: Components = {
-    img: ({ src, alt, ...props }) => {
+    // 同样为 img 拦截并正确传递 ref
+    img: ({ src, alt, ref, ...props }) => {
       const finalSrc = isUrlAbsolute(src as string) ? src : `/api/?path=${parentPath}/${src}&raw=true`
       // eslint-disable-next-line @next/next/no-img-element
-      return <img src={finalSrc} alt={alt} {...props} />
+      return <img src={finalSrc} alt={alt} ref={ref} {...props} />
     },
 
-    code({ node, className, children, ...props }) {
+    // code 渲染器
+    code({ node, className, children, ref, ...props }) {
       const match = /language-(\w+)/.exec(className || '')
 
-
+      // 如果是内联代码，它是一个真正的 <code> DOM 元素，所以我们应该把 ref 传给它
       if (!match) {
         return (
-          <code className={className} {...props}>
+          <code className={className} ref={ref} {...props}>
             {children}
           </code>
         )
       }
 
+      // 如果是代码块，我们将使用 SyntaxHighlighter 组件。
+      // 我们已经从参数中解构出了 ref，所以它不会被包含在 `{...props}` 中。
+      // 这就阻止了不兼容的 ref 被传递给 SyntaxHighlighter。
       return (
         <SyntaxHighlighter
           language={match[1]}
-          
-          style={tomorrowNight as any}
-          // 我们使用 'as any' 来进行类型断言
+          style={tomorrowNight as any} // 保持 as any 以解决 style 的类型问题
           PreTag="div"
-          {...props}
+          {...props} // 这里的 props 已经不包含 ref 了
         >
           {String(children).replace(/\n$/, '')}
         </SyntaxHighlighter>
