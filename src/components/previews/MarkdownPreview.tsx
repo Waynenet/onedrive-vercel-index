@@ -1,3 +1,4 @@
+import type { Components } from 'react-markdown'
 import { FC, CSSProperties, ReactNode } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -30,38 +31,17 @@ const MarkdownPreview: FC<{
   // Check if the image is relative path instead of a absolute url
   const isUrlAbsolute = (url: string | string[]) => url.indexOf('://') > 0 || url.indexOf('//') === 0
   // Custom renderer:
-  const customRenderer = {
-    // img: to render images in markdown with relative file paths
-    img: ({
-      alt,
-      src,
-      title,
-      width,
-      height,
-      style,
-    }: {
-      alt?: string
-      src?: string
-      title?: string
-      width?: string | number
-      height?: string | number
-      style?: CSSProperties
-    }) => {
-      return (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          alt={alt}
-          src={isUrlAbsolute(src as string) ? src : `/api/?path=${parentPath}/${src}&raw=true`}
-          title={title}
-          width={width}
-          height={height}
-          style={style}
-        />
-      )
+  // 明确地为 customRenderer 标注 Components 类型
+  const customRenderer: Components = {
+    img: ({ src, ...props }) => {
+      const finalSrc = isUrlAbsolute(src as string) ? src : `/api/?path=${parentPath}/${src}&raw=true`
+      // eslint-disable-next-line @next/next/no-img-element
+      return <img src={finalSrc} {...props} />
     },
-    // code: to render code blocks with react-syntax-highlighter
-    // 为所有可选属性 (className, children, inline) 提供了兼容的默认值。
-    code({ className = '', children = null, inline = false, ...props }) {
+
+    // code 渲染器
+    code({ node, inline, className, children, ...props }) {
+      // a. 处理内联代码的情况
       if (inline) {
         return (
           <code className={className} {...props}>
@@ -70,22 +50,21 @@ const MarkdownPreview: FC<{
         )
       }
 
-      // 健壮地处理 children，确保 null/undefined/数组 都能正确转换为空字符串或连接后的字符串
-      const childrenAsString = !children
-        ? ''
-        : Array.isArray(children)
-        ? children.join('')
-        : String(children)
-
+      // b. 提取语言类型
       const match = /language-(\w+)/.exec(className || '')
+      const language = match ? match[1] : 'text' // 提供一个默认值
+
+      // c. 将 children 直接、简单地转换为字符串
+      const codeString = String(children).replace(/\n$/, '')
+
       return (
         <SyntaxHighlighter
-          language={match ? match[1] : 'language-text'}
+          language={language}
           style={tomorrowNight}
           PreTag="div"
           {...props}
         >
-          {childrenAsString.replace(/\n$/, '')}
+          {codeString}
         </SyntaxHighlighter>
       )
     },
