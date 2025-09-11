@@ -39,10 +39,13 @@ const MarkdownPreview: FC<{
       return <img src={finalSrc} {...props} />
     },
 
-    // code 渲染器
-    code({ node, inline, className, children, ...props }) {
-      // a. 处理内联代码的情况
-      if (inline) {
+    // code 渲染器，不再使用 'inline' 属性
+    code({ node, className, children, ...props }) {
+      // 通过检查 className 中是否存在 'language-' 前缀来判断是否为代码块
+      const match = /language-(\w+)/.exec(className || '')
+
+      // 如果 match 不存在，说明是内联代码
+      if (!match) {
         return (
           <code className={className} {...props}>
             {children}
@@ -50,21 +53,15 @@ const MarkdownPreview: FC<{
         )
       }
 
-      // b. 提取语言类型
-      const match = /language-(\w+)/.exec(className || '')
-      const language = match ? match[1] : 'text' // 提供一个默认值
-
-      // c. 将 children 直接、简单地转换为字符串
-      const codeString = String(children).replace(/\n$/, '')
-
+      // 如果 match 存在，说明是代码块，需要进行语法高亮
       return (
         <SyntaxHighlighter
-          language={language}
+          language={match[1]} // 提取语言，例如 'js'
           style={tomorrowNight}
           PreTag="div"
           {...props}
         >
-          {codeString}
+          {String(children).replace(/\n$/, '')}
         </SyntaxHighlighter>
       )
     },
