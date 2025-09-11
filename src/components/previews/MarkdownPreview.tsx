@@ -65,11 +65,7 @@ const MarkdownPreview: FC<{
       children = '',
       inline,
       ...props
-    }: {
-      className?: string | undefined
-      children: ReactNode
-      inline?: boolean
-    }) {
+    } {
       if (inline) {
         return (
           <code className={className} {...props}>
