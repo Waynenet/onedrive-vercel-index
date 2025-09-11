@@ -60,11 +60,9 @@ const MarkdownPreview: FC<{
       )
     },
     // code: to render code blocks with react-syntax-highlighter
-    // 1. 为 className 和 inline 提供默认值
-    // 2. 移除 children 的默认值，以接受完整的 ReactNode 类型
-    code({ className = '', children, inline = false, ...props }) {
+    // 为所有可选属性 (className, children, inline) 提供了兼容的默认值。
+    code({ className = '', children = null, inline = false, ...props }) {
       if (inline) {
-        // 对于内联代码，我们直接渲染 children，因为它可能是复杂的 ReactNode
         return (
           <code className={className} {...props}>
             {children}
@@ -72,14 +70,14 @@ const MarkdownPreview: FC<{
         )
       }
 
-      const match = /language-(\w+)/.exec(className || '')
-      
-      // 3. 健壮地将 children 转换为字符串
-      //    React 的子节点可能是一个数组，我们需要先把它拍平
-      const childrenAsString = Array.isArray(children)
+      // 健壮地处理 children，确保 null/undefined/数组 都能正确转换为空字符串或连接后的字符串
+      const childrenAsString = !children
+        ? ''
+        : Array.isArray(children)
         ? children.join('')
         : String(children)
 
+      const match = /language-(\w+)/.exec(className || '')
       return (
         <SyntaxHighlighter
           language={match ? match[1] : 'language-text'}
