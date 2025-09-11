@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import Plyr from 'plyr-react'
+import type PlyrType from 'plyr'
 import { useAsync } from 'react-async-hook'
 import { useClipboard } from 'use-clipboard-copy'
 
@@ -63,7 +64,7 @@ const VideoPlayer: FC<{
     poster: thumbnail,
     tracks: [{ kind: 'captions', label: videoName, src: '', default: true }],
   }
-  const plyrOptions: Plyr.Options = {
+  const plyrOptions: PlyrType.Options = {
     ratio: `${width ?? 16}:${height ?? 9}`,
     fullscreen: { iosNative: true },
   }
