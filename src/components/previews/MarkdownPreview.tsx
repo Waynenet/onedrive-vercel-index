@@ -31,21 +31,17 @@ const MarkdownPreview: FC<{
   // Check if the image is relative path instead of a absolute url
   const isUrlAbsolute = (url: string | string[]) => url.indexOf('://') > 0 || url.indexOf('//') === 0
   // Custom renderer:
-  // 明确地为 customRenderer 标注 Components 类型
   const customRenderer: Components = {
-    // 修复了 alt 属性警告
     img: ({ src, alt, ...props }) => {
       const finalSrc = isUrlAbsolute(src as string) ? src : `/api/?path=${parentPath}/${src}&raw=true`
       // eslint-disable-next-line @next/next/no-img-element
       return <img src={finalSrc} alt={alt} {...props} />
     },
 
-    // code 渲染器，它不再使用 'inline' 属性
     code({ node, className, children, ...props }) {
-      // 通过检查 className 中是否存在 'language-' 前缀来判断是否为代码块
       const match = /language-(\w+)/.exec(className || '')
 
-      // 如果 match 不存在，说明是内联代码
+
       if (!match) {
         return (
           <code className={className} {...props}>
@@ -54,11 +50,12 @@ const MarkdownPreview: FC<{
         )
       }
 
-      // 如果 match 存在，说明是代码块，需要进行语法高亮
       return (
         <SyntaxHighlighter
-          language={match[1]} // 提取语言，例如 'js'
-          style={tomorrowNight}
+          language={match[1]}
+          
+          style={tomorrowNight as any}
+          // 我们使用 'as any' 来进行类型断言
           PreTag="div"
           {...props}
         >
