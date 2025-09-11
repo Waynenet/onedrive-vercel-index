@@ -62,7 +62,7 @@ const MarkdownPreview: FC<{
     // code: to render code blocks with react-syntax-highlighter
     code({
       className,
-      children,
+      children = '',
       inline,
       ...props
     }: {
