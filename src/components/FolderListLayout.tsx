@@ -5,10 +5,10 @@ import { FC } from 'react'
 import { useClipboard } from 'use-clipboard-copy'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'next-i18next'
-
+import toast from 'react-hot-toast'
 import { getBaseUrl } from '../utils/getBaseUrl'
 import { humanFileSize, formatModifiedDateTime } from '../utils/fileDetails'
-
+import { FolderLayoutProps } from './FolderGridLayout'
 import { Downloading, Checkbox, ChildIcon, ChildName } from './FileListing'
 import { getStoredToken } from '../utils/protectedRouteHandler'
 
@@ -31,7 +31,7 @@ const FileListItem: FC<{ fileContent: OdFolderChildren }> = ({ fileContent: c })
   )
 }
 
-const FolderListLayout = ({
+const FolderListLayout: FC<FolderLayoutProps> = ({
   path,
   folderChildren,
   selected,
@@ -52,6 +52,15 @@ const FolderListLayout = ({
 
   // Get item path from item name
   const getItemPath = (name: string) => `${path === '/' ? '' : path}/${encodeURIComponent(name)}`
+
+  const getSelectionState = (): 0 | 1 | 2 => {
+    if (totalSelected === 0) return 0
+    if (totalSelected > 0 && totalSelected < folderChildren.length) return 1
+    // 假设非文件夹的数量等于总数减去文件夹数量
+    const nonFolderCount = folderChildren.filter(c => !c.folder).length
+    if (totalSelected === nonFolderCount && nonFolderCount > 0) return 2
+    return 1 // Fallback for partial selection
+  }
 
   return (
     <div className="rounded bg-white shadow-sm dark:bg-gray-900 dark:text-gray-100">

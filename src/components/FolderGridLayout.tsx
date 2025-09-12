@@ -55,7 +55,7 @@ const GridItem = ({ c, path }: { c: OdFolderChildren; path: string }) => {
 }
 
 // 在这里添加 props 类型定义
-type FolderGridLayoutProps = {
+export type FolderGridLayoutProps = {
   path: string
   folderChildren: OdFolderChildren[]
   selected: { [key: string]: boolean }
