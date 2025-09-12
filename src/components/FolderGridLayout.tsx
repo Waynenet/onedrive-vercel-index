@@ -92,15 +92,30 @@ const FolderGridLayout: FC<FolderGridLayoutProps> = ({
   // Get item path from item name
   const getItemPath = (name: string) => `${path === '/' ? '' : path}/${encodeURIComponent(name)}`
 
+  const getSelectionState = (): 0 | 1 | 2 => {
+    if (totalSelected === 0) {
+      return 0 // 未选中
+    }
+    if (totalSelected === folderChildren.length) {
+      return 2 // 全部选中
+    }
+    return 1 // 部分选中
+  }
+
   return (
     <div className="rounded bg-white shadow-sm dark:bg-gray-900 dark:text-gray-100">
       <div className="flex items-center border-b border-gray-900/10 px-3 text-xs font-bold uppercase tracking-widest text-gray-600 dark:border-gray-500/30 dark:text-gray-400">
         <div className="flex-1">{t('{{count}} item(s)', { count: folderChildren.length })}</div>
         <div className="flex p-1.5 text-gray-700 dark:text-gray-400">
           <Checkbox
-            checked={totalSelected}
+             // vvvvvvvvvv 使用我们计算出的新状态 vvvvvvvvvv
+            checked={getSelectionState()}
+            // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
             onChange={toggleTotalSelected}
-            indeterminate={true}
+            // indeterminate 属性现在由 getSelectionState() 逻辑处理，可以考虑移除，
+            // 但为了安全起见，我们先保留它，或者根据 Checkbox 组件的实现来决定。
+            // 假设 Checkbox 组件会优先使用 checked 属性。
+            indeterminate={getSelectionState() === 1}
             title={t('Select all files')}
           />
           <button
