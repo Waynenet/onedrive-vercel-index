@@ -25,6 +25,7 @@ export type OdFileObject = {
   name: string
   size: number
   id: string
+  path: string
   lastModifiedDateTime: string
   file: { mimeType: string; hashes: { quickXorHash: string; sha1Hash?: string; sha256Hash?: string } }
   image?: OdImageFile

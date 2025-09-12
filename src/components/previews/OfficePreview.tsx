@@ -9,14 +9,9 @@ import { getBaseUrl } from '../../utils/getBaseUrl'
 const OfficePreview: FC<{ file: OdFileObject }> = ({ file }) => {
   const { t } = useTranslation()
 
-  // 构建 Microsoft Office Web Viewer 的 URL
   const officeViewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(
     file['@microsoft.graph.downloadUrl']
   )}`
-
-  // 从 parentReference 中获取父目录路径，并与文件名拼接，以获取完整的文件 API 路径
-  // Drive API 路径通常以 /drive/root: 开头，我们需要将其替换为空字符串
-  const filePath = `${file.parentReference.path.replace('/drive/root:', '')}/${file.name}`
 
   return (
     <div>
@@ -33,11 +28,9 @@ const OfficePreview: FC<{ file: OdFileObject }> = ({ file }) => {
           </iframe>
         </div>
       </PreviewContainer>
-
       <DownloadBtnContainer>
         <DownloadButtonGroup
-          // 使用新构建的正确路径
-          directLink={getBaseUrl() + `/api/raw/?path=${filePath}`}
+          directLink={getBaseUrl() + `/api/raw/?path=${file.path}`}
           downloadUrl={file['@microsoft.graph.downloadUrl']}
         />
       </DownloadBtnContainer>
