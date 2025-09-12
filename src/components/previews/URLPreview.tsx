@@ -6,9 +6,7 @@ import { useRouter } from 'next/router'
 
 import FourOhFour from '../FourOhFour'
 import Loading from '../Loading'
-// vvvvvvvvvv 这是核心修复 vvvvvvvvvv
-import DownloadButtonGroup from '../DownloadBtnGtoup' // 导入默认导出的 DownloadButtonGroup
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+import DownloadButtonGroup from '../DownloadBtnGtoup'
 import useFileContent from '../../utils/fetchOnMount'
 import { DownloadBtnContainer, PreviewContainer } from './Containers'
 import { getBaseUrl } from '../../utils/getBaseUrl'
@@ -20,12 +18,9 @@ import { getBaseUrl } from '../../utils/getBaseUrl'
  * @returns The parsed URL
  */
 function parseDotUrl(url: string): string {
-  // Return empty string if url is not a valid string
   if (typeof url !== 'string') {
     return ''
   }
-  // The URL may be a single line of string with the URL in it, when in fact it is not a valid URL.
-  // This extracts the URL from the string.
   const urlRegex = new RegExp(/https?:\/\/[^\s/$.?#].[^\s]*/)
   const hyperlink = url.match(urlRegex)
   return hyperlink ? hyperlink[0] : ''
@@ -57,7 +52,9 @@ const URLPreview: FC<{ file: any }> = ({ file }) => {
 
   return (
     <div>
-      <PreviewContainer>
+      {/* vvvvvvvvvv 这是核心修复 vvvvvvvvvv */}
+      <PreviewContainer> 
+      {/* ^^^^^^ 这里的结束标签现在是正确的了 ^^^^^^ */}
         <div className="space-y-4">
           <p className="text-lg font-bold">{t('This is an URL redirect')}</p>
           <p className="text-sm font-medium opacity-80">{t('Redirecting to:')}</p>
@@ -70,12 +67,11 @@ const URLPreview: FC<{ file: any }> = ({ file }) => {
             {hyperlink}
           </a>
         </div>
-      </PreviwContainer>
+      </PreviewContainer>
+      {/* ^^^^^^ 正确的拼写 </PreviewContainer> ^^^^^^ */}
 
       <DownloadBtnContainer>
-        {/* vvvvvvvvvv 使用正确的组件 vvvvvvvvvv */}
         <DownloadButtonGroup directLink={directLink} downloadUrl={hyperlink} />
-        {/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */}
       </DownloadBtnContainer>
     </div>
   )
