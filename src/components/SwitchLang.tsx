@@ -1,19 +1,25 @@
-import { Fragment } from 'react'
+import { Fragment, FC, PropsWithChildren } from 'react' // 导入 FC 和 PropsWithChildren
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Menu, Transition } from '@headlessui/react'
 
 import { useRouter } from 'next/router'
-import Link from 'next/link'
+import Link, { LinkProps } from 'next/link' // 导入 LinkProps
 import { useCookies, withCookies } from 'react-cookie'
 
-// https://headlessui.dev/react/menu#integrating-with-next-js
-const CustomLink = ({ href, children, as, locale, ...props }) => {
+// vvvvvvvvvv 这是核心修复 vvvvvvvvvv
+// 1. 定义 CustomLink 的 props 类型，它继承了 Next.js 的 LinkProps，并包含了 children
+//    我们还添加了 onClick，因为您在下面使用了它
+type CustomLinkProps = PropsWithChildren<LinkProps & { onClick?: () => void }>
+
+// 2. 将这个类型应用到组件上
+const CustomLink: FC<CustomLinkProps> = ({ href, children, as, locale, ...props }) => {
   return (
     <Link href={href} as={as} locale={locale} {...props}>
       {children}
     </Link>
   )
 }
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 const localeText = (locale: string): string => {
   switch (locale) {
@@ -38,7 +44,7 @@ const localeText = (locale: string): string => {
   }
 }
 
-const SwitchLang = () => {
+const SwitchLang: FC = () => { // <--- 为 SwitchLang 也添加 FC 类型
   const { locales, pathname, query, asPath } = useRouter()
 
   const [_, setCookie] = useCookies(['NEXT_LOCALE'])
