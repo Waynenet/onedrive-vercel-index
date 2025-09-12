@@ -1,36 +1,41 @@
-import type { OdFileObject } from '../../types'
-import { FC, useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/router'
+import { FC } from 'react'
+import { useTranslation } from 'next-i18next'
 
-import Preview from 'preview-office-docs'
-
+import { OdFileObject } from '../../types'
+import { DownloadBtnContainer, PreviewContainer } from './Containers'
 import DownloadButtonGroup from '../DownloadBtnGtoup'
-import { DownloadBtnContainer } from './Containers'
 import { getBaseUrl } from '../../utils/getBaseUrl'
-import { getStoredToken } from '../../utils/protectedRouteHandler'
 
 const OfficePreview: FC<{ file: OdFileObject }> = ({ file }) => {
-  const { asPath } = useRouter()
-  const hashedToken = getStoredToken(asPath)
+  const { t } = useTranslation()
 
-  const docContainer = useRef<HTMLDivElement>(null)
-  const [docContainerWidth, setDocContainerWidth] = useState(600)
-
-  const docUrl = encodeURIComponent(
-    `${getBaseUrl()}/api/raw/?path=${asPath}${hashedToken ? `&odpt=${hashedToken}` : ''}`
-  )
-
-  useEffect(() => {
-    setDocContainerWidth(docContainer.current ? docContainer.current.offsetWidth : 600)
-  }, [])
+  // 构建 Microsoft Office Web Viewer 的 URL
+  // 我们需要对文件的下载链接进行 URL 编码
+  const officeViewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(
+    file['@microsoft.graph.downloadUrl']
+  )}`
 
   return (
     <div>
-      <div className="overflow-scroll" ref={docContainer} style={{ maxHeight: '90vh' }}>
-        <Preview url={docUrl} width={docContainerWidth.toString()} height="600" />
-      </div>
+      <PreviewContainer>
+        <div className="w-full h-[80vh] overflow-hidden">
+          <iframe
+            src={officeViewerUrl}
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            title={file.name}
+          >
+            {t('Loading Office document...')}
+          </iframe>
+        </div>
+      </PreviewContainer>
+
       <DownloadBtnContainer>
-        <DownloadButtonGroup />
+        <DownloadButtonGroup
+          directLink={getBaseUrl() + `/api/raw/?path=${file.path}`}
+          downloadUrl={file['@microsoft.graph.downloadUrl']}
+        />
       </DownloadBtnContainer>
     </div>
   )

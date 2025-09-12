@@ -1,10 +1,13 @@
+// src/components/previews/CodePreview.tsx
 import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
-import useSystemTheme from 'react-use-system-theme'
 import { useRouter } from 'next/router'
 
+import { useSystemTheme } from '../../utils/useSystemTheme' // <--- 导入我们自己的 Hook
+
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { tomorrowNightEighties, tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+// Proactively changed cjs to esm to prevent future issues
+import { tomorrowNightEighties, tomorrow } from 'react-syntax-highlighter/dist/esm/styles/hljs' 
 
 import useFileContent from '../../utils/fetchOnMount'
 import { getLanguageByFileName } from '../../utils/getPreviewType'
@@ -17,7 +20,7 @@ const CodePreview: FC<{ file: any }> = ({ file }) => {
   const { asPath } = useRouter()
   const { response: content, error, validating } = useFileContent(`/api/raw/?path=${asPath}`, asPath)
 
-  const theme = useSystemTheme('dark')
+  const theme = useSystemTheme() // <--- 使用我们自己的 Hook (不再需要'dark'参数)
   const { t } = useTranslation()
 
   if (error) {
