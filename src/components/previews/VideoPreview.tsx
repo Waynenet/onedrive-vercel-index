@@ -47,6 +47,7 @@ const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
     result: CCHandler,
   } = useAsync(async () => {
     const { data } = await axios.get(file['@microsoft.graph.downloadUrl'])
+    // @ts-ignore - subtitle-conv lacks type definitions
     const { SubtitleConv } = await import('subtitle-conv')
     const handler = new SubtitleConv(data, 'vtt')
     await handler.parse()
