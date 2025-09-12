@@ -1,5 +1,5 @@
 import type { OdFolderChildren } from '../types'
-
+import { FC } from 'react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -54,7 +54,23 @@ const GridItem = ({ c, path }: { c: OdFolderChildren; path: string }) => {
   )
 }
 
-const FolderGridLayout = ({
+// 在这里添加 props 类型定义
+type FolderGridLayoutProps = {
+  path: string
+  folderChildren: OdFolderChildren[]
+  selected: { [key: string]: boolean }
+  toggleItemSelected: (id: string) => void
+  totalSelected: number
+  toggleTotalSelected: () => void
+  totalGenerating: boolean
+  handleSelectedDownload: () => void
+  folderGenerating: { [key: string]: boolean }
+  handleSelectedPermalink: (baseUrl: string) => string
+  handleFolderDownload: (path: string, id: string, name: string) => () => void
+  toast: (message: string, options?: any) => void
+}
+
+const FolderGridLayout: FC<FolderGridLayoutProps> = ({
   path,
   folderChildren,
   selected,
