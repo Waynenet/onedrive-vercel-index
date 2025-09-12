@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useClipboard } from 'use-clipboard-copy'
 import { useTranslation } from 'next-i18next'
-import { Toaster as ToasterType } from 'react-hot-toast'
+import { Toast } from 'react-hot-toast'
 import { getBaseUrl } from '../utils/getBaseUrl'
 import { formatModifiedDateTime } from '../utils/fileDetails'
 import { Checkbox, ChildIcon, ChildName, Downloading } from './FileListing'
@@ -67,6 +67,7 @@ type FolderGridLayoutProps = {
   folderGenerating: { [key: string]: boolean }
   handleSelectedPermalink: (baseUrl: string) => string
   handleFolderDownload: (path: string, id: string, name: string) => () => void
+  toast: Toast // 使用导入的 Toast 类型来定义 toast prop
 }
 
 const FolderGridLayout: FC<FolderGridLayoutProps> = ({
@@ -81,6 +82,7 @@ const FolderGridLayout: FC<FolderGridLayoutProps> = ({
   folderGenerating,
   handleSelectedPermalink,
   handleFolderDownload,
+  toast,
 }) => {
   const clipboard = useClipboard()
   const hashedToken = getStoredToken(path)
