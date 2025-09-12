@@ -55,7 +55,7 @@ const GridItem = ({ c, path }: { c: OdFolderChildren; path: string }) => {
 }
 
 // 在这里添加 props 类型定义
-export type FolderGridLayoutProps = {
+export type FolderLayoutProps = {
   path: string
   folderChildren: OdFolderChildren[]
   selected: { [key: string]: boolean }
@@ -70,7 +70,7 @@ export type FolderGridLayoutProps = {
   toast: typeof toast; // 使用导入的 Toast 类型来定义 toast prop
 }
 
-const FolderGridLayout: FC<FolderGridLayoutProps> = ({
+const FolderGridLayout: FC<FolderLayoutProps> = ({
   path,
   folderChildren,
   selected,
