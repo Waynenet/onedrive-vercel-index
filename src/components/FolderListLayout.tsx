@@ -54,11 +54,10 @@ const FolderListLayout: FC<FolderLayoutProps> = ({
 
   const getSelectionState = (): 0 | 1 | 2 => {
     if (totalSelected === 0) return 0
-    if (totalSelected > 0 && totalSelected < folderChildren.length) return 1
-    // 假设非文件夹的数量等于总数减去文件夹数量
-    const nonFolderCount = folderChildren.filter(c => !c.folder).length
-    if (totalSelected === nonFolderCount && nonFolderCount > 0) return 2
-    return 1 // Fallback for partial selection
+    // 逻辑可以简化：如果 totalSelected > 0 且不是全部选中，就是部分选中
+    const selectableFileCount = folderChildren.filter(c => !c.folder && c.name !== '.password').length
+    if (totalSelected === selectableFileCount && selectableFileCount > 0) return 2
+    return 1
   }
 
   return (
@@ -79,9 +78,9 @@ const FolderListLayout: FC<FolderLayoutProps> = ({
         <div className="hidden text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300 md:block">
           <div className="hidden p-1.5 text-gray-700 dark:text-gray-400 md:flex">
             <Checkbox
-              checked={totalSelected}
+              checked={getSelectionState()} // 使用 getSelectionState()
               onChange={toggleTotalSelected}
-              indeterminate={true}
+              indeterminate={getSelectionState() === 1} // 同样使用 getSelectionState()
               title={t('Select files')}
             />
             <button
