@@ -10,7 +10,6 @@ import { useSystemTheme } from '../utils/useSystemTheme' // 导入我们自己�
 import '../styles/globals.css'
 import '../styles/prism-onedark.css'
 
-import SearchModal from '../components/SearchModal'
 import { Analytics } from '@vercel/analytics/react'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -30,7 +29,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <NextNProgress color="#2563EB" height={2} options={{ showSpinner: false }} />
       <Toaster />
-      <SearchModal />
       <Component {...pageProps} />
       <Analytics />
     </>

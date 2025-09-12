@@ -7,7 +7,7 @@ import { useHotkeys } from 'react-hotkeys-hook'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState, FC } from 'react'
 import { useTranslation } from 'next-i18next'
 
 import siteConfig from '../../config/site.config'
@@ -15,7 +15,7 @@ import SearchModal from './SearchModal'
 import SwitchLang from './SwitchLang'
 import useDeviceOS from '../utils/useDeviceOS'
 
-const Navbar = () => {
+const Navbar: FC = () => { // <--- 添加 FC 类型
   const router = useRouter()
   const os = useDeviceOS()
 
