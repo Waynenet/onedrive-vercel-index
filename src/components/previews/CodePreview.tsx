@@ -3,11 +3,9 @@ import { FC } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
-import { useSystemTheme } from '../../utils/useSystemTheme' // <--- 导入我们自己的 Hook
-
-import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
-// Proactively changed cjs to esm to prevent future issues
-import { tomorrowNightEighties, tomorrow } from 'react-syntax-highlighter/dist/esm/styles/hljs' 
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrowNight, tomorrow } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { useSystemTheme } from '../../utils/useSystemTheme'
 
 import useFileContent from '../../utils/fetchOnMount'
 import { getLanguageByFileName } from '../../utils/getPreviewType'
@@ -48,7 +46,7 @@ const CodePreview: FC<{ file: any }> = ({ file }) => {
       <PreviewContainer>
         <SyntaxHighlighter
           language={getLanguageByFileName(file.name)}
-          style={theme === 'dark' ? tomorrowNightEighties : tomorrow}
+          style={theme === 'dark' ? tomorrowNight : tomorrow}
         >
           {content}
         </SyntaxHighlighter>

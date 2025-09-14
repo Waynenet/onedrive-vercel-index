@@ -1,13 +1,15 @@
+import { FC } from 'react'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+import { OdFileObject } from '../../types'
 import FourOhFour from '../FourOhFour'
 import Loading from '../Loading'
 import DownloadButtonGroup from '../DownloadBtnGtoup'
 import useFileContent from '../../utils/fetchOnMount'
 import { DownloadBtnContainer, PreviewContainer } from './Containers'
 
-const TextPreview = ({ file }) => {
+const TextPreview: FC<{ file: OdFileObject }> = ({ file }) => {
   const { asPath } = useRouter()
   const { t } = useTranslation()
 
