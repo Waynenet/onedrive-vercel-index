@@ -15,7 +15,7 @@
 }
 
 .react-pdf__Page__canvas {
-  @apply mx-auto border border-gray-300/40 shadow;
+  @apply mx-auto border border-gray-300/[0.4] shadow;
 }
 
 .markdown-body ul {
