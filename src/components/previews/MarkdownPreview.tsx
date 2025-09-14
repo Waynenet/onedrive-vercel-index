@@ -1,7 +1,7 @@
 // src/components/previews/MarkdownPreview.tsx
 
 import { FC, CSSProperties } from 'react'
-import ReactMarkdown, { Components } from 'react-markdown' // 导入 Components 类型
+import ReactMarkdown, { Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
@@ -33,47 +33,48 @@ const MarkdownPreview: FC<{
       ? `/api/raw/?path=${parentPath}/${file.name}`
       : `/api/raw/?path=${path}`
   const { response: content, error, validating } = useFileContent(contentFetchUrl, path)
-  
+
   const { t } = useTranslation()
   const theme = useSystemTheme()
 
   const isUrlAbsolute = (url: string) => url.indexOf('://') > 0 || url.indexOf('//') === 0
 
-  // vvvvvvvvvv 这是核心修复 vvvvvvvvvv
-  // 1. 明确地为 customRenderer 标注 Components 类型
   const customRenderer: Components = {
-    // 2. 为 img 的 props 添加明确的类型，并解构出 alt
     img: ({ src, alt, ...props }) => {
       const finalSrc = isUrlAbsolute(src as string) ? src : `/api/?path=${parentPath}/${src}&raw=true`
       // eslint-disable-next-line @next/next/no-img-element
       return <img src={finalSrc} alt={alt} {...props} />
     },
-    // 3. 在 code 的参数中，只解构我们确定存在的属性
-    code({ node, className, children, ...props }) {
+
+    // vvvvvvvvvv 这是核心修复 vvvvvvvvvv
+    // 我们在参数中解构出 ref，这样它就不会被包含在 `{...props}` 中
+    code({ node, className, children, ref, ...props }) {
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       const match = /language-(\w+)/.exec(className || '')
-      
-      // 内联代码 (没有 language-前缀)
+
       if (!match) {
         return (
-          <code className={className} {...props}>
+          // 对于内联代码，它是一个真正的 <code> DOM 元素，所以我们应该把 ref 传给它
+          <code className={className} ref={ref} {...props}>
             {children}
           </code>
         )
       }
 
-      // 代码块
+      // 对于代码块，我们使用 SyntaxHighlighter。
+      // 因为 ref 已经被解构出来，所以这里的 {...props} 不再包含它，
+      // 从而避免了类型冲突。
       return (
         <SyntaxHighlighter
           language={match[1]}
-          style={theme === 'dark' ? tomorrowNight : tomorrow}
-          {...props}
+          style={(theme === 'dark' ? tomorrowNight : tomorrow) as any} // 保持 style 的类型断言
+          {...props} // 这里的 props 已经不包含 ref 了
         >
           {String(children).replace(/\n$/, '')}
         </SyntaxHighlighter>
       )
     },
   }
-  // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   if (error) {
     return (
