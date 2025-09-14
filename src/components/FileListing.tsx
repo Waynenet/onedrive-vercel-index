@@ -28,10 +28,6 @@ import Auth from './Auth'
 import TextPreview from './previews/TextPreview'
 import MarkdownPreview from './previews/MarkdownPreview'
 import CodePreview from './previews/CodePreview'
-import OfficePreview from './previews/OfficePreview'
-import AudioPreview from './previews/AudioPreview'
-import VideoPreview from './previews/VideoPreview'
-import PDFPreview from './previews/PDFPreview'
 import URLPreview from './previews/URLPreview'
 import ImagePreview from './previews/ImagePreview'
 import DefaultPreview from './previews/DefaultPreview'
@@ -41,9 +37,11 @@ import FolderListLayout from './FolderListLayout'
 import FolderGridLayout from './FolderGridLayout'
 
 // Disabling SSR for some previews
-const EPUBPreview = dynamic(() => import('./previews/EPUBPreview'), {
-  ssr: false,
-})
+const OfficePreview = dynamic(() => import('./previews/OfficePreview'), { ssr: false })
+const AudioPreview = dynamic(() => import('./previews/AudioPreview'), { ssr: false })
+const VideoPreview = dynamic(() => import('./previews/VideoPreview'), { ssr: false })
+const PDFPreview = dynamic(() => import('./previews/PDFPreview'), { ssr: false })
+const EPUBPreview = dynamic(() => import('./previews/EPUBPreview'), { ssr: false })
 
 /**
  * Convert url query into path string
