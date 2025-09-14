@@ -1,18 +1,16 @@
 // src/components/previews/MarkdownPreview.tsx
 
 import { FC, CSSProperties } from 'react'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown, { Components } from 'react-markdown' // 导入 Components 类型
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import { useTranslation } from 'next-i18next'
 
-// vvvvvvvvvv 这是核心修复 vvvvvvvvvv
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrowNight, tomorrow } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { useSystemTheme } from '../../utils/useSystemTheme'
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 import 'katex/dist/katex.min.css'
 
@@ -37,23 +35,25 @@ const MarkdownPreview: FC<{
   const { response: content, error, validating } = useFileContent(contentFetchUrl, path)
   
   const { t } = useTranslation()
-  const theme = useSystemTheme() // <-- 获取系统主题
+  const theme = useSystemTheme()
 
   const isUrlAbsolute = (url: string) => url.indexOf('://') > 0 || url.indexOf('//') === 0
 
-  const customRenderer = {
-    img: ({ src, ...props }: { src?: string; alt?: string; title?: string; width?: string | number; height?: string | number; style?: CSSProperties }) => {
+  // vvvvvvvvvv 这是核心修复 vvvvvvvvvv
+  // 1. 明确地为 customRenderer 标注 Components 类型
+  const customRenderer: Components = {
+    // 2. 为 img 的 props 添加明确的类型，并解构出 alt
+    img: ({ src, alt, ...props }) => {
       const finalSrc = isUrlAbsolute(src as string) ? src : `/api/?path=${parentPath}/${src}&raw=true`
       // eslint-disable-next-line @next/next/no-img-element
-      return <img src={finalSrc} {...props} />
+      return <img src={finalSrc} alt={alt} {...props} />
     },
-    // vvvvvvvvvv 这是核心修复：直接使用 SyntaxHighlighter vvvvvvvvvv
+    // 3. 在 code 的参数中，只解构我们确定存在的属性
     code({ node, className, children, ...props }) {
       const match = /language-(\w+)/.exec(className || '')
-      const language = match ? match[1] : 'text'
-
-      // 内联代码
-      if (!className) {
+      
+      // 内联代码 (没有 language-前缀)
+      if (!match) {
         return (
           <code className={className} {...props}>
             {children}
@@ -64,7 +64,7 @@ const MarkdownPreview: FC<{
       // 代码块
       return (
         <SyntaxHighlighter
-          language={language}
+          language={match[1]}
           style={theme === 'dark' ? tomorrowNight : tomorrow}
           {...props}
         >
@@ -72,8 +72,8 @@ const MarkdownPreview: FC<{
         </SyntaxHighlighter>
       )
     },
-    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   }
+  // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   if (error) {
     return (
