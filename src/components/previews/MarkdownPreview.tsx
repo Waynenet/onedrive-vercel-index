@@ -24,13 +24,18 @@ import { DownloadBtnContainer, PreviewContainer } from './Containers'
 import { OdFileObject } from '../../types'
 
 const MarkdownPreview: FC<{
-  file: OdFileObject
+  file: Pick<OdFileObject, 'name'> & { '@microsoft.graph.downloadUrl'?: string }
   path: string
   standalone?: boolean
 }> = ({ file, path, standalone = true }) => {
   const parentPath = standalone ? path.substring(0, path.lastIndexOf('/')) : path
 
-  const { response: content, error, validating } = useFileContent(`/api/raw/?path=${parentPath}/${file.name}`, path)
+  const contentFetchUrl =
+    standalone || file['@microsoft.graph.downloadUrl']
+      ? `/api/raw/?path=${parentPath}/${file.name}`
+      : `/api/raw/?path=${path}`
+  const { response: content, error, validating } = useFileContent(contentFetchUrl, path)
+  
   const { t } = useTranslation()
   const theme = useSystemTheme() // <-- 获取系统主题
 
