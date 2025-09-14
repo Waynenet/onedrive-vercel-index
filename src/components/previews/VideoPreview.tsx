@@ -1,13 +1,9 @@
-import { FC, useState } from 'react'
-import axios from 'axios'
+import { FC } from 'react'
 import Plyr from 'plyr-react'
 import type PlyrJS from 'plyr'
-import 'plyr-react/dist/plyr.css'
-import { useAsync } from 'react-async-hook'
-import { useTranslation } from 'next-i18next'
+import 'plyr/dist/plyr.css' // 保持从 'plyr' 导入 CSS
 
 import { getBaseUrl } from '../../utils/getBaseUrl'
-import FourOhFour from '../FourOhFour'
 import { DownloadBtnContainer } from './Containers'
 import DownloadButtonGroup from '../DownloadBtnGtoup'
 import { OdFileObject } from '../../types'
@@ -17,14 +13,13 @@ const PlyrComponent: FC<{
   videoUrl: string
   width?: number
   height?: number
-  captions?: PlyrJS.Track[]
-}> = ({ videoName, videoUrl, width, height, captions }) => {
+}> = ({ videoName, videoUrl, width, height }) => {
   const plyrSource: PlyrJS.SourceInfo = {
     type: 'video',
     title: videoName,
-    sources: [],
+    sources: [{ src: videoUrl }],
     poster: videoUrl.replace(/mp4/g, 'jpg'),
-    tracks: captions,
+    // 字幕功能被移除，不再需要 tracks 属性
   }
 
   const plyrOptions: PlyrJS.Options = {
@@ -32,43 +27,10 @@ const PlyrComponent: FC<{
     fullscreen: { iosNative: true },
   }
 
-  if (videoUrl) {
-    plyrSource['sources'] = [{ src: videoUrl }]
-  }
   return <Plyr id="plyr" source={plyrSource} options={plyrOptions} />
 }
 
 const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
-  const { t } = useTranslation()
-
-  const {
-    loading,
-    error,
-    result: CCHandler,
-  } = useAsync(async () => {
-    const { data } = await axios.get(file['@microsoft.graph.downloadUrl'])
-    // @ts-ignore - subtitle-conv lacks type definitions
-    const { SubtitleConv } = await import('subtitle-conv')
-    const handler = new SubtitleConv(data, 'vtt')
-    await handler.parse()
-    return handler
-  }, [file])
-
-  const {
-    result: vttURL,
-  } = useAsync(async () => {
-    if (loading || error || !CCHandler) return
-    const vtt = await CCHandler.stringify()
-    return URL.createObjectURL(new Blob([vtt], { type: 'text/vtt' }))
-  }, [CCHandler])
-
-  if (error) {
-    return (
-      <div className="dark:bg-gray-900 p-3 text-red-500">
-        <FourOhFour errorMsg={t('Failed to load subtitle.')} />
-      </div>
-    )
-  }
 
   return (
     <div>
@@ -78,11 +40,6 @@ const VideoPreview: FC<{ file: OdFileObject }> = ({ file }) => {
           videoUrl={file['@microsoft.graph.downloadUrl']}
           width={file.video?.width}
           height={file.video?.height}
-          captions={
-            vttURL
-              ? [{ kind: 'captions', label: file.name, src: vttURL, default: true }]
-              : undefined // 如果没有 vttURL，不传递 tracks 属性
-          }
         />
       </div>
       <DownloadBtnContainer>
