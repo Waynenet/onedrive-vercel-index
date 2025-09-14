@@ -97,7 +97,7 @@ export default function CustomEmbedLinkMenu({
               <div className="mt-4">
                 <h4 className="py-2 text-xs font-medium uppercase tracking-wider">{t('Filename')}</h4>
                 <input
-                  className="mb-2 w-full rounded border border-gray-600/10 p-2.5 font-mono focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-600 dark:text-white dark:focus:ring-blue-700"
+                  className="mb-2 w-full rounded border border-gray-600/[0.1] p-2.5 font-mono focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-600 dark:text-white dark:focus:ring-blue-700"
                   ref={focusInputRef}
                   value={name}
                   onChange={e => setName(e.target.value)}

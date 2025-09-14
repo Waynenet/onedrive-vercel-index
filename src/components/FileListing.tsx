@@ -9,6 +9,10 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrowNight, tomorrow } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { useSystemTheme } from '../utils/useSystemTheme'
+
 import useLocalStorage from '../utils/useLocalStorage'
 import { getPreviewType, preview } from '../utils/getPreviewType'
 import { useProtectedSWRInfinite } from '../utils/fetchWithSWR'
@@ -163,6 +167,8 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
   const path = queryToPath(query)
 
   const { data, error, size, setSize } = useProtectedSWRInfinite(path)
+
+  const systemTheme = useSystemTheme()
 
   if (error) {
     // If error includes 403 which means the user has not completed initial setup, redirect to OAuth page
@@ -399,7 +405,17 @@ const FileListing: FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
           return <ImagePreview file={file} />
 
         case preview.text:
-          return <TextPreview file={file} />
+          return (
+            <PreviewContainer>
+              <SyntaxHighlighter
+                language={getExtension(file.name)}
+                style={systemTheme === 'dark' ? tomorrowNight : tomorrow}
+                showLineNumbers
+              >
+                {responses[0].content}
+              </SyntaxHighlighter>
+            </PreviewContainer>
+          )
 
         case preview.code:
           return <CodePreview file={file} />
