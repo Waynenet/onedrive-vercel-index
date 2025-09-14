@@ -58,7 +58,7 @@ const Navbar: FC = () => { // <--- 添加 FC 类型
   }
 
   return (
-    <div className="sticky top-0 z-[100] border-b border-gray-900/10 bg-white bg-opacity-80 backdrop-blur-md dark:border-gray-500/30 dark:bg-gray-900">
+    <div className="sticky top-0 z-[100] border-b border-gray-900/[0.1] bg-white bg-opacity-80 backdrop-blur-md dark:border-gray-500/[0.3] dark:bg-gray-900">
       <Toaster />
 
       <SearchModal searchOpen={searchOpen} setSearchOpen={setSearchOpen} />

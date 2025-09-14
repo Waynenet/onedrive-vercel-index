@@ -1,13 +1,18 @@
-import type { Components } from 'react-markdown'
-import { FC, CSSProperties, ReactNode } from 'react'
+// src/components/previews/MarkdownPreview.tsx
+
+import { FC, CSSProperties } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import { useTranslation } from 'next-i18next'
-import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+
+// vvvvvvvvvv 这是核心修复 vvvvvvvvvv
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { tomorrowNight, tomorrow } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { useSystemTheme } from '../../utils/useSystemTheme'
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 import 'katex/dist/katex.min.css'
 
@@ -16,56 +21,53 @@ import FourOhFour from '../FourOhFour'
 import Loading from '../Loading'
 import DownloadButtonGroup from '../DownloadBtnGtoup'
 import { DownloadBtnContainer, PreviewContainer } from './Containers'
+import { OdFileObject } from '../../types'
 
 const MarkdownPreview: FC<{
-  file: any
+  file: OdFileObject
   path: string
   standalone?: boolean
 }> = ({ file, path, standalone = true }) => {
-  // The parent folder of the markdown file, which is also the relative image folder
   const parentPath = standalone ? path.substring(0, path.lastIndexOf('/')) : path
 
   const { response: content, error, validating } = useFileContent(`/api/raw/?path=${parentPath}/${file.name}`, path)
   const { t } = useTranslation()
+  const theme = useSystemTheme() // <-- 获取系统主题
 
-  // Check if the image is relative path instead of a absolute url
-  const isUrlAbsolute = (url: string | string[]) => url.indexOf('://') > 0 || url.indexOf('//') === 0
-  // Custom renderer:
-  const customRenderer: Components = {
-    // 同样为 img 拦截并正确传递 ref
-    img: ({ src, alt, ref, ...props }) => {
+  const isUrlAbsolute = (url: string) => url.indexOf('://') > 0 || url.indexOf('//') === 0
+
+  const customRenderer = {
+    img: ({ src, ...props }: { src?: string; alt?: string; title?: string; width?: string | number; height?: string | number; style?: CSSProperties }) => {
       const finalSrc = isUrlAbsolute(src as string) ? src : `/api/?path=${parentPath}/${src}&raw=true`
       // eslint-disable-next-line @next/next/no-img-element
-      return <img src={finalSrc} alt={alt} ref={ref} {...props} />
+      return <img src={finalSrc} {...props} />
     },
-
-    // code 渲染器
-    code({ node, className, children, ref, ...props }) {
+    // vvvvvvvvvv 这是核心修复：直接使用 SyntaxHighlighter vvvvvvvvvv
+    code({ node, className, children, ...props }) {
       const match = /language-(\w+)/.exec(className || '')
+      const language = match ? match[1] : 'text'
 
-      // 如果是内联代码，它是一个真正的 <code> DOM 元素，所以我们应该把 ref 传给它
-      if (!match) {
+      // 内联代码
+      if (!className) {
         return (
-          <code className={className} ref={ref} {...props}>
+          <code className={className} {...props}>
             {children}
           </code>
         )
       }
 
-      // 如果是代码块，我们将使用 SyntaxHighlighter 组件。
-      // 我们已经从参数中解构出了 ref，所以它不会被包含在 `{...props}` 中。
-      // 这就阻止了不兼容的 ref 被传递给 SyntaxHighlighter。
+      // 代码块
       return (
         <SyntaxHighlighter
-          language={match[1]}
-          style={tomorrowNight as any} // 保持 as any 以解决 style 的类型问题
-          PreTag="div"
-          {...props} // 这里的 props 已经不包含 ref 了
+          language={language}
+          style={theme === 'dark' ? tomorrowNight : tomorrow}
+          {...props}
         >
           {String(children).replace(/\n$/, '')}
         </SyntaxHighlighter>
       )
     },
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   }
 
   if (error) {
@@ -77,16 +79,17 @@ const MarkdownPreview: FC<{
   }
   if (validating) {
     return (
-      <>
-        <PreviewContainer>
-          <Loading loadingText={t('Loading file content...')} />
-        </PreviewContainer>
-        {standalone && (
-          <DownloadBtnContainer>
-            <DownloadButtonGroup />
-          </DownloadBtnContainer>
-        )}
-      </>
+      <PreviewContainer>
+        <Loading loadingText={t('Loading file content...')} />
+      </PreviewContainer>
+    )
+  }
+
+  if (!content) {
+    return (
+      <PreviewContainer>
+        <Loading loadingText={t('Loading file content...')} />
+      </PreviewContainer>
     )
   }
 
@@ -94,14 +97,8 @@ const MarkdownPreview: FC<{
     <div>
       <PreviewContainer>
         <div className="markdown-body">
-          {/* Using rehypeRaw to render HTML inside Markdown is potentially dangerous, use under safe environments. (#18) */}
           <ReactMarkdown
-            // @ts-ignore
             remarkPlugins={[remarkGfm, remarkMath]}
-            // The type error is introduced by caniuse-lite upgrade.
-            // Since type errors occur often in remark toolchain and the use is so common,
-            // ignoring it shoudld be safe enough.
-            // @ts-ignore
             rehypePlugins={[rehypeKatex, rehypeRaw]}
             components={customRenderer}
           >

@@ -93,7 +93,7 @@ function SearchResultItemTemplate({
     <Link
       href={driveItemPath}
       passHref
-      className={`flex items-center space-x-4 border-b border-gray-400/30 px-4 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-850 ${
+      className={`flex items-center space-x-4 border-b border-gray-400/[0.3] px-4 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-850 ${
         disabled ? 'pointer-events-none cursor-not-allowed' : 'cursor-pointer'
       }`}
     >
@@ -199,7 +199,7 @@ export default function SearchModal({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-white/80 dark:bg-gray-800/80" aria-hidden="true"/>
+            <div className="fixed inset-0 bg-white/[0.8] dark:bg-gray-800/[0.8]" aria-hidden="true"/>
           </Transition.Child>
 
           <Transition.Child
@@ -211,10 +211,10 @@ export default function SearchModal({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="my-12 inline-block w-full max-w-3xl transform overflow-hidden rounded border border-gray-400/30 text-left shadow-xl transition-all">
+            <div className="my-12 inline-block w-full max-w-3xl transform overflow-hidden rounded border border-gray-400/[0.3] text-left shadow-xl transition-all">
               <Dialog.Title
                 as="h3"
-                className="flex items-center space-x-4 border-b border-gray-400/30 bg-gray-50 p-4 dark:bg-gray-800 dark:text-white"
+                className="flex items-center space-x-4 border-b border-gray-400/[0.3] bg-gray-50 p-4 dark:bg-gray-800 dark:text-white"
               >
                 <FontAwesomeIcon icon="search" className="h-4 w-4" />
                 <input

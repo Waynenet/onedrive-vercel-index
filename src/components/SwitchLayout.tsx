@@ -44,13 +44,13 @@ const SwitchLayout = () => {
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute right-0 z-20 mt-1 w-32 overflow-auto rounded border border-gray-900/10 bg-white py-1 shadow-lg focus:outline-none dark:border-gray-500/30 dark:bg-gray-800">
+          <Listbox.Options className="absolute right-0 z-20 mt-1 w-32 overflow-auto rounded border border-gray-900/[0.1] bg-white py-1 shadow-lg focus:outline-none dark:border-gray-500/[0.3] dark:bg-gray-800">
             {layouts.map(layout => (
               <Listbox.Option
                 key={layout.id}
                 className={`${
                   layout.name === preferredLayout.name &&
-                  'bg-blue-50 text-blue-700 dark:bg-blue-600/10 dark:text-blue-400'
+                  'bg-blue-50 text-blue-700 dark:bg-blue-600/[0.1] dark:text-blue-400'
                 } relative flex cursor-pointer select-none items-center py-1.5 pl-3 text-gray-600 hover:opacity-80 dark:text-gray-300`}
                 value={layout}
               >

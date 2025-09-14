@@ -66,7 +66,7 @@ const SwitchLang: FC = () => { // <--- 为 SwitchLang 也添加 FC 类型
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Menu.Items className="absolute top-0 right-0 z-20 mt-8 w-28 divide-y divide-gray-900 overflow-auto rounded border border-gray-900/10 bg-white py-1 shadow-lg focus:outline-none dark:border-gray-500/30 dark:bg-gray-900 dark:text-white">
+          <Menu.Items className="absolute top-0 right-0 z-20 mt-8 w-28 divide-y divide-gray-900 overflow-auto rounded border border-gray-900/[0.1] bg-white py-1 shadow-lg focus:outline-none dark:border-gray-500/[0.3] dark:bg-gray-900 dark:text-white">
             {locales!.map(locale => (
               <Menu.Item key={locale}>
                 <CustomLink
@@ -76,7 +76,7 @@ const SwitchLang: FC = () => { // <--- 为 SwitchLang 也添加 FC 类型
                   locale={locale}
                   onClick={() => setCookie('NEXT_LOCALE', locale, { path: '/' })}
                 >
-                  <div className="m-1 cursor-pointer rounded px-2 py-1 text-left text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-600/10 dark:hover:text-blue-400">
+                  <div className="m-1 cursor-pointer rounded px-2 py-1 text-left text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-600/[0.1] dark:hover:text-blue-400">
                     {localeText(locale)}
                   </div>
                 </CustomLink>

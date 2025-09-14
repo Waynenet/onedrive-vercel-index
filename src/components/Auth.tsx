@@ -31,7 +31,7 @@ const Auth: FC<{ redirect: string }> = ({ redirect }) => {
 
       <div className="flex items-center space-x-2">
         <input
-          className="flex-1 rounded border border-gray-600/10 p-2 font-mono focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-600 dark:text-white dark:focus:ring-blue-700"
+          className="flex-1 rounded border border-gray-600/[0.1] p-2 font-mono focus:outline-none focus:ring focus:ring-blue-300 dark:bg-gray-600 dark:text-white dark:focus:ring-blue-700"
           autoFocus
           type="password"
           placeholder="************"

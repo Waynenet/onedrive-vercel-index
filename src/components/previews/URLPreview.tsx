@@ -59,7 +59,7 @@ const URLPreview: FC<{ file: any }> = ({ file }) => {
           <p className="text-lg font-bold">{t('This is an URL redirect')}</p>
           <p className="text-sm font-medium opacity-80">{t('Redirecting to:')}</p>
           <a
-            className="block w-full truncate rounded border border-gray-400/20 bg-gray-50 p-2 font-mono text-sm dark:bg-gray-800"
+            className="block w-full truncate rounded border border-gray-400/[0.2] bg-gray-50 p-2 font-mono text-sm dark:bg-gray-800"
             href={hyperlink}
             target="_blank"
             rel="noopener noreferrer"

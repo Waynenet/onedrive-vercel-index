@@ -22,7 +22,7 @@ const GridItem = ({ c, path }: { c: OdFolderChildren; path: string }) => {
 
   return (
     <div className="space-y-2">
-      <div className="h-32 overflow-hidden rounded border border-gray-900/10 dark:border-gray-500/30">
+      <div className="h-32 overflow-hidden rounded border border-gray-900/[0.1] dark:border-gray-500/[0.3]">
         {thumbnailUrl && !brokenThumbnail ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -104,7 +104,7 @@ const FolderGridLayout: FC<FolderLayoutProps> = ({
 
   return (
     <div className="rounded bg-white shadow-sm dark:bg-gray-900 dark:text-gray-100">
-      <div className="flex items-center border-b border-gray-900/10 px-3 text-xs font-bold uppercase tracking-widest text-gray-600 dark:border-gray-500/30 dark:text-gray-400">
+      <div className="flex items-center border-b border-gray-900/[0.1] px-3 text-xs font-bold uppercase tracking-widest text-gray-600 dark:border-gray-500/[0.3] dark:text-gray-400">
         <div className="flex-1">{t('{{count}} item(s)', { count: folderChildren.length })}</div>
         <div className="flex p-1.5 text-gray-700 dark:text-gray-400">
           <Checkbox
@@ -150,7 +150,7 @@ const FolderGridLayout: FC<FolderLayoutProps> = ({
             key={c.id}
             className="group relative overflow-hidden rounded transition-all duration-100 hover:bg-gray-100 dark:hover:bg-gray-850"
           >
-            <div className="absolute top-0 right-0 z-10 m-1 rounded bg-white/50 py-0.5 opacity-0 transition-all duration-100 group-hover:opacity-100 dark:bg-gray-900/50">
+            <div className="absolute top-0 right-0 z-10 m-1 rounded bg-white/[0.5] py-0.5 opacity-0 transition-all duration-100 group-hover:opacity-100 dark:bg-gray-900/[0.5]">
               {c.folder ? (
                 <div>
                   <span
@@ -207,7 +207,7 @@ const FolderGridLayout: FC<FolderLayoutProps> = ({
             <div
               className={`${
                 selected[c.id] ? 'opacity-100' : 'opacity-0'
-              } absolute top-0 left-0 z-10 m-1 rounded bg-white/50 py-0.5 group-hover:opacity-100 dark:bg-gray-900/50`}
+              } absolute top-0 left-0 z-10 m-1 rounded bg-white/[0.5] py-0.5 group-hover:opacity-100 dark:bg-gray-900/[0.5]`}
             >
               {!c.folder && !(c.name === '.password') && (
                 <Checkbox
