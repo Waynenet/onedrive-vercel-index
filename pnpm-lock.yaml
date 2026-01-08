@@ -55,7 +55,7 @@ importers:
         version: 25.7.4(typescript@5.9.3)
       ioredis:
         specifier: ^5.3.0
-        version: 5.9.0
+        version: 5.9.1
       jszip:
         specifier: ^3.10.1
         version: 3.10.1
@@ -1994,8 +1994,8 @@ packages:
     resolution: {integrity: sha512-NGnrKwXzSms2qUUih/ILZ5JBqNTSa1+ZmP6flaIp6KmSElgE9qdndzS3cqjrDovwFdmwsGsLdeFgB6suw+1e9g==}
     engines: {node: '>= 0.4'}
 
-  ioredis@5.9.0:
-    resolution: {integrity: sha512-T3VieIilNumOJCXI9SDgo4NnF6sZkd6XcmPi6qWtw4xqbt8nNz/ZVNiIH1L9puMTSHZh1mUWA4xKa2nWPF4NwQ==}
+  ioredis@5.9.1:
+    resolution: {integrity: sha512-BXNqFQ66oOsR82g9ajFFsR8ZKrjVvYCLyeML9IvSMAsP56XH2VXBdZjmI11p65nXXJxTEt1hie3J2QeFJVgrtQ==}
     engines: {node: '>=12.22.0'}
 
   is-alphabetical@1.0.4:
@@ -5534,7 +5534,7 @@ snapshots:
       hasown: 2.0.2
       side-channel: 1.0.6
 
-  ioredis@5.9.0:
+  ioredis@5.9.1:
     dependencies:
       '@ioredis/commands': 1.5.0
       cluster-key-slot: 1.1.2
