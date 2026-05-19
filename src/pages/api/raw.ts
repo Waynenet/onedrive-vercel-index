@@ -1,11 +1,13 @@
 import { posix as pathPosix } from 'path'
 
 import type { NextApiRequest, NextApiResponse } from 'next'
-import axios, { AxiosResponseHeaders } from 'axios'
+import axios from 'axios'
 import Cors from 'cors'
 
 import { driveApi, cacheControlHeader } from '../../../config/api.config'
 import { encodePath, getAccessToken, checkAuthRoute } from '.'
+
+import { OutgoingHttpHeaders } from 'http'
 
 // CORS middleware for raw links: https://nextjs.org/docs/api-routes/api-middlewares
 export function runCorsMiddleware(req: NextApiRequest, res: NextApiResponse) {
@@ -77,7 +79,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
         headers['Cache-Control'] = cacheControlHeader
         // Send data stream as response
-        res.writeHead(200, headers as AxiosResponseHeaders)
+        res.writeHead(200, headers as OutgoingHttpHeaders)
         stream.pipe(res)
       } else {
         res.redirect(data['@microsoft.graph.downloadUrl'])
