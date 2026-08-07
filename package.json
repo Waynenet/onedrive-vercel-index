@@ -84,5 +84,11 @@
     "plugins": [
       "prettier-plugin-tailwindcss"
     ]
+  },
+  "packageManager": "pnpm@11.16.0",
+  "pnpm": {
+    "overrides": {
+      "webworkify-webpack": "https://codeload.github.com/xqq/webworkify-webpack/tar.gz/24d1e719b4a6cac37a518b2bb10fe124527ef4ef"
+    }
   }
 }
