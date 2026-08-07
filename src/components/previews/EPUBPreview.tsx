@@ -3,7 +3,7 @@ import type { OdFileObject } from '../../types'
 import { FC, useEffect, useRef, useState } from 'react'
 import { ReactReader } from 'react-reader'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import Loading from '../Loading'
 import DownloadButtonGroup from '../DownloadBtnGtoup'
@@ -21,7 +21,7 @@ const EPUBPreview: FC<{ file: OdFileObject }> = ({ file }) => {
     setEpubContainerWidth(epubContainer.current ? epubContainer.current.offsetWidth : 400)
   }, [])
 
-  const [location, setLocation] = useState<string>()
+  const [location, setLocation] = useState<string | null>(null)
   const onLocationChange = (cfiStr: string) => setLocation(cfiStr)
 
   const { t } = useTranslation()
@@ -44,7 +44,7 @@ const EPUBPreview: FC<{ file: OdFileObject }> = ({ file }) => {
   return (
     <div>
       <div
-        className="no-scrollbar flex w-full flex-col overflow-scroll rounded bg-white dark:bg-gray-900 md:p-3"
+        className="no-scrollbar flex w-full flex-col overflow-scroll rounded-sm bg-white md:p-3 dark:bg-gray-900"
         style={{ maxHeight: '90vh' }}
       >
         <div className="no-scrollbar w-full flex-1 overflow-scroll" ref={epubContainer} style={{ minHeight: '70vh' }}>

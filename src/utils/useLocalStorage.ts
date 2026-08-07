@@ -50,7 +50,11 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
   }
 
   useEffect(() => {
-    setStoredValue(readValue())
+    const timer = setTimeout(() => {
+      setStoredValue(readValue())
+    }, 0)
+
+    return () => clearTimeout(timer)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

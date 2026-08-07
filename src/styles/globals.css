@@ -1,6 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/* Tailwind v3 风格的 JS 配置（字体、颜色、内容扫描）经 @config 兼容加载 */
+@config '../../tailwind.config.js';
+
+@theme {
+  /* 自定义动画：慢速旋转（唱片效果） */
+  --animate-spin-slow: spin-slow 5s linear infinite;
+
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
 
 @layer utilities {
   /* Chrome, Safari and Opera */
@@ -14,10 +26,6 @@
   }
 }
 
-.react-pdf__Page__canvas {
-  @apply mx-auto border border-gray-300/40 shadow;
-}
-
 .markdown-body ul {
   @apply list-disc;
 }
@@ -26,5 +34,5 @@
 }
 pre[class*='language-'],
 code[class*='language-'] {
-  @apply font-mono !important;
+  @apply font-mono!;
 }

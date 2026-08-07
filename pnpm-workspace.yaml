@@ -1,0 +1,15 @@
+packages:
+  - '.'
+
+# 允许 mpegts.js 传递的 exotic 依赖（webworkify-webpack，已通过 overrides 固定为 url tarball）
+blockExoticSubdeps: false
+
+# pnpm 11 默认拦截依赖的构建脚本，这里显式放行所需包
+allowBuilds:
+  core-js: true
+  es5-ext: true
+  esbuild: true
+
+overrides:
+  # mpegts.js 依赖的 webworkify-webpack 是 git 依赖，固定到与 lockfile 一致的 tarball，避免 SSH/git 解析
+  webworkify-webpack: https://codeload.github.com/xqq/webworkify-webpack/tar.gz/24d1e719b4a6cac37a518b2bb10fe124527ef4ef

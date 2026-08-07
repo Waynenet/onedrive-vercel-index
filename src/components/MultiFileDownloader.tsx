@@ -1,7 +1,7 @@
 import { NextRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import JSZip from 'jszip'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import { fetcher } from '../utils/fetchWithSWR'
 import { getStoredToken } from '../utils/protectedRouteHandler'
@@ -21,13 +21,13 @@ export function DownloadingToast({ router, progress }: { router: NextRouter; pro
         <span>{progress ? t('Downloading {{progress}}%', { progress }) : t('Downloading selected files...')}</span>
 
         <div className="relative mt-2">
-          <div className="flex h-1 overflow-hidden rounded bg-gray-100">
+          <div className="flex h-1 overflow-hidden rounded-sm bg-gray-100">
             <div style={{ width: `${progress}%` }} className="bg-gray-500 text-white transition-all duration-100"></div>
           </div>
         </div>
       </div>
       <button
-        className="rounded bg-red-500 p-2 text-white hover:bg-red-400 focus:outline-none focus:ring focus:ring-red-300"
+        className="rounded-sm bg-red-500 p-2 text-white hover:bg-red-400 focus:ring focus:ring-red-300 focus:outline-none"
         onClick={() => router.reload()}
       >
         {t('Cancel')}
@@ -78,7 +78,7 @@ export async function downloadMultipleFiles({
       name,
       fetch(url).then(r => {
         return r.blob()
-      })
+      }),
     )
   })
 
@@ -132,7 +132,7 @@ export async function downloadTreelikeMultipleFiles({
       .reverse()
       .findIndex(
         ({ path: parent }) =>
-          path.substring(0, parent.length) === parent && path.substring(parent.length + 1).indexOf('/') === -1
+          path.substring(0, parent.length) === parent && path.substring(parent.length + 1).indexOf('/') === -1,
       )
     if (i === -1) {
       throw new Error('File array does not satisfy requirement')
@@ -145,7 +145,7 @@ export async function downloadTreelikeMultipleFiles({
     } else {
       dir.file(
         name,
-        fetch(url!).then(r => r.blob())
+        fetch(url!).then(r => r.blob()),
       )
     }
   }

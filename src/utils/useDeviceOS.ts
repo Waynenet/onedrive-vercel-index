@@ -5,16 +5,19 @@ export default function useDeviceOS(): string {
 
   useEffect(() => {
     const userAgent = window.navigator.userAgent
+    const timer = setTimeout(() => {
+      if (userAgent.indexOf('Windows') > -1) {
+        setOS('windows')
+      } else if (userAgent.indexOf('Mac OS') > -1) {
+        setOS('mac')
+      } else if (userAgent.indexOf('Linux') > -1) {
+        setOS('linux')
+      } else {
+        setOS('other')
+      }
+    }, 0)
 
-    if (userAgent.indexOf('Windows') > -1) {
-      setOS('windows')
-    } else if (userAgent.indexOf('Mac OS') > -1) {
-      setOS('mac')
-    } else if (userAgent.indexOf('Linux') > -1) {
-      setOS('linux')
-    } else {
-      setOS('other')
-    }
+    return () => clearTimeout(timer)
   }, [])
 
   return os

@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useTranslation, Trans } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation, Trans } from 'next-i18next/pages'
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations'
 
 import siteConfig from '../../../config/site.config'
 import Navbar from '../../components/Navbar'
@@ -32,7 +32,7 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
   const [buttonContent, setButtonContent] = useState(
     <div>
       <span>{t('Store tokens')}</span> <FontAwesomeIcon icon="key" />
-    </div>
+    </div>,
   )
   const [buttonError, setButtonError] = useState(false)
 
@@ -41,7 +41,7 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
     setButtonContent(
       <div>
         <span>{t('Storing tokens')}</span> <LoadingIcon className="ml-1 inline h-4 w-4 animate-spin" />
-      </div>
+      </div>,
     )
 
     // verify identity of the authenticated user with the Microsoft Graph API
@@ -51,7 +51,7 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
       setButtonContent(
         <div>
           <span>{t('Error validating identify, restart')}</span> <FontAwesomeIcon icon="exclamation-circle" />
-        </div>
+        </div>,
       )
       return
     }
@@ -60,7 +60,7 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
       setButtonContent(
         <div>
           <span>{t('Do not pretend to be the site owner')}</span> <FontAwesomeIcon icon="exclamation-circle" />
-        </div>
+        </div>,
       )
       return
     }
@@ -71,7 +71,7 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
         setButtonContent(
           <div>
             <span>{t('Stored! Going home...')}</span> <FontAwesomeIcon icon="check" />
-          </div>
+          </div>,
         )
         setTimeout(() => {
           router.push('/')
@@ -82,7 +82,7 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
         setButtonContent(
           <div>
             <span>{t('Error storing the token')}</span> <FontAwesomeIcon icon="exclamation-circle" />
-          </div>
+          </div>,
         )
       })
   }
@@ -97,7 +97,7 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
         <Navbar />
 
         <div className="mx-auto w-full max-w-5xl p-4">
-          <div className="rounded bg-white p-3 dark:bg-gray-900 dark:text-gray-100">
+          <div className="rounded-sm bg-white p-3 dark:bg-gray-900 dark:text-gray-100">
             <div className="mx-auto w-52">
               <Image
                 src="/images/fabulous-celebration.png"
@@ -123,7 +123,7 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
                     })}
                   </span>
                 </p>
-                <p className="my-2 whitespace-pre-line rounded border border-gray-400/20 bg-gray-50 p-2 font-mono text-sm opacity-80 dark:bg-gray-800">
+                <p className="my-2 rounded-sm border border-gray-400/20 bg-gray-50 p-2 font-mono text-sm whitespace-pre-line opacity-80 dark:bg-gray-800">
                   {
                     // t('Where is the auth code? Did you follow step 2 you silly donut?')
                     t(description)
@@ -146,7 +146,7 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
                     </Trans>
                   </p>
                 )}
-                <div className="mb-2 mt-6 text-right">
+                <div className="mt-6 mb-2 text-right">
                   <button
                     className="rounded-lg bg-gradient-to-br from-red-500 to-orange-400 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:ring-4 focus:ring-red-200 disabled:cursor-not-allowed disabled:grayscale dark:focus:ring-red-800"
                     onClick={() => {
@@ -193,14 +193,14 @@ export default function OAuthStep3({ accessToken, expiryTime, refreshToken, erro
                     {
                       minutes: Math.floor(expiryTimeLeft / 60),
                       seconds: expiryTimeLeft - Math.floor(expiryTimeLeft / 60) * 60,
-                    }
+                    },
                   ) +
                     t(
-                      "Don't worry, after storing them, onedrive-vercel-index will take care of token refreshes and updates after your site goes live."
+                      "Don't worry, after storing them, onedrive-vercel-index will take care of token refreshes and updates after your site goes live.",
                     )}
                 </p>
 
-                <div className="mb-2 mt-6 text-right">
+                <div className="mt-6 mb-2 text-right">
                   <button
                     className={`rounded-lg bg-gradient-to-br px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:ring-4 ${
                       buttonError

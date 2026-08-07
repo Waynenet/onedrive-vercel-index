@@ -2,7 +2,7 @@ import type { OdFileObject } from '../../types'
 
 import { FC, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import axios from 'axios'
 import toast from 'react-hot-toast'

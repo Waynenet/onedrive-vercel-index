@@ -1,10 +1,10 @@
-import { Fragment } from 'react'
+import { Fragment, type JSX } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Menu, Transition } from '@headlessui/react'
 
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { useCookies, withCookies } from 'react-cookie'
+import { useCookies } from 'react-cookie'
 
 // https://headlessui.dev/react/menu#integrating-with-next-js
 const CustomLink = ({ href, children, as, locale, ...props }): JSX.Element => {
@@ -60,7 +60,7 @@ const SwitchLang = () => {
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Menu.Items className="absolute top-0 right-0 z-20 mt-8 w-28 divide-y divide-gray-900 overflow-auto rounded border border-gray-900/10 bg-white py-1 shadow-lg focus:outline-none dark:border-gray-500/30 dark:bg-gray-900 dark:text-white">
+          <Menu.Items className="absolute top-0 right-0 z-20 mt-8 w-28 divide-y divide-gray-900 overflow-auto rounded-sm border border-gray-900/10 bg-white py-1 shadow-lg focus:outline-none dark:border-gray-500/30 dark:bg-gray-900 dark:text-white">
             {locales!.map(locale => (
               <Menu.Item key={locale}>
                 <CustomLink
@@ -70,7 +70,7 @@ const SwitchLang = () => {
                   locale={locale}
                   onClick={() => setCookie('NEXT_LOCALE', locale, { path: '/' })}
                 >
-                  <div className="m-1 cursor-pointer rounded px-2 py-1 text-left text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-600/10 dark:hover:text-blue-400">
+                  <div className="m-1 cursor-pointer rounded-sm px-2 py-1 text-left text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-600/10 dark:hover:text-blue-400">
                     {localeText(locale)}
                   </div>
                 </CustomLink>
@@ -83,4 +83,4 @@ const SwitchLang = () => {
   )
 }
 
-export default withCookies(SwitchLang)
+export default SwitchLang

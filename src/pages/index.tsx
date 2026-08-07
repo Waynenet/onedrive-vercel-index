@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations'
 
 import siteConfig from '../../config/site.config'
 import Navbar from '../components/Navbar'

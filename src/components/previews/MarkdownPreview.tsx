@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrowNight } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 
@@ -32,38 +32,22 @@ const MarkdownPreview: FC<{
   // Custom renderer:
   const customRenderer = {
     // img: to render images in markdown with relative file paths
-    img: ({
-      alt,
-      src,
-      title,
-      width,
-      height,
-      style,
-    }: {
-      alt?: string
-      src?: string
-      title?: string
-      width?: string | number
-      height?: string | number
-      style?: CSSProperties
-    }) => {
-      return (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          alt={alt}
-          src={isUrlAbsolute(src as string) ? src : `/api/?path=${parentPath}/${src}&raw=true`}
-          title={title}
-          width={width}
-          height={height}
-          style={style}
-        />
-      )
-    },
+    img: ({ alt, src, title, width, height, style }: any) => (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        alt={alt}
+        src={typeof src === 'string' ? (isUrlAbsolute(src) ? src : `/api/?path=${parentPath}/${src}&raw=true`) : src}
+        title={title}
+        width={width}
+        height={height}
+        style={style}
+      />
+    ),
     // code: to render code blocks with react-syntax-highlighter
     code(props) {
-      const { inline, className, children, ...rest } = props
-      
-      if (inline) {
+      // In react-markdown v9+, block code carries a language className while inline code does not
+      const { node, className, children, ...rest } = props
+      if (!className) {
         return (
           <code className={className} {...rest}>
             {children}
