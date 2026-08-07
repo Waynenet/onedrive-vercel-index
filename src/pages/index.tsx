@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations'
 
+import nextI18NextConfig from '../../next-i18next.config'
 import siteConfig from '../../config/site.config'
 import Navbar from '../components/Navbar'
 import FileListing from '../components/FileListing'
@@ -34,7 +35,7 @@ export default function Home() {
 export async function getServerSideProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common'], nextI18NextConfig)),
     },
   }
 }

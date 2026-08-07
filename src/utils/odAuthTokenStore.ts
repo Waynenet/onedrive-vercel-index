@@ -5,6 +5,9 @@ import siteConfig from '../../config/site.config'
 // https://vercel.com/integrations/upstash
 const kv = new Redis(process.env.REDIS_URL || '')
 
+// ioredis retries reconnection on its own; attach an error listener so transient failures don't surface as unhandled errors
+kv.on('error', () => {})
+
 export async function getOdAuthTokens(): Promise<{ accessToken: unknown; refreshToken: unknown }> {
   const accessToken = await kv.get(`${siteConfig.kvPrefix}access_token`)
   const refreshToken = await kv.get(`${siteConfig.kvPrefix}refresh_token`)
