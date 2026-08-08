@@ -10,14 +10,21 @@
 - 本仓库是上游项目的一份个性化部署/定制副本，已对站点标题、图标、联系人、分享目录等做了定制。
 
 ## 技术栈
-- 框架：**Next.js 15**（React 18，TypeScript，开启 `reactStrictMode`，`trailingSlash: true`）
-- 构建/发布：**Vercel** + **pnpm**（`pnpm-lock.yaml`）
+- 框架：**Next.js 16**（pages router，React 19，TypeScript，开启 `reactStrictMode`，`trailingSlash: true`）
+- 构建/发布：**Vercel** + **pnpm 11**（`pnpm-lock.yaml` 为版本控制基准；配置在 `pnpm-workspace.yaml`）
 - 状态获取：**SWR**（含 `useSWRInfinite` 无限分页）
-- 样式：**Tailwind CSS 3** + PostCSS（深色模式基于 Tailwind `dark:` 变体）
-- 图标：**Font Awesome**（在 `_app.tsx` 全局注册，含全部品牌图标）
-- 国际化：**next-i18next**（多语言，默认 `zh-CN`）
+- 样式：**Tailwind CSS 4** + `@tailwindcss/postcss`（`src/styles/globals.css` 用 `@import 'tailwindcss'` + `@config` 兼容旧 JS 配置，深色模式基于 Tailwind `dark:` 变体）
+- 图标：**Font Awesome 7**（在 `_app.tsx` 全局注册，含全部品牌图标）
+- 国际化：**next-i18next 16**（多语言，默认 `zh-CN`；导入路径为 `next-i18next/pages` 与 `next-i18next/pages/serverSideTranslations`）
+- Cookie：**react-cookie 8**（`_app.tsx` 全局包裹 `CookiesProvider`）
 - 预览能力：markdown / 代码高亮 / PDF / EPUB / Office / 音频 / 视频 / 图片等
-- 认证存托：**Redis**（默认对接 Upstash，通过 `REDIS_URL` 指定）
+- 认证存托：**Redis**（默认对接 Upstash，通过 `REDIS_URL` 指定，ioredis 6）
+
+## 依赖升级记录（2026-08）
+- Next.js `16.3.0`、React/ReactDOM `19.2.8`、Tailwind CSS `4.3.3`、`@headlessui/react 2`、`react-markdown 10`、`next-i18next 16`、`react-cookie 8`、`ioredis 6`。
+- TypeScript 固定 `^6.0.3`（TS 7 为刚发布的原生编译器，typescript-eslint 尚未支持）。
+- ESLint 固定 `^9.39.5`（ESLint 10 的 scopeManager API 尚未被 typescript-eslint 8.66 实现），使用 **flat config**（`eslint.config.mjs`），`lint` 脚本为 `eslint .`。
+- `package.json` 声明 `packageManager: pnpm@11.20.0` 并同步写有 `pnpm.overrides`（兼容 Vercel 侧 pnpm 9/10 读取，避免 lockfile overrides 不匹配）。
 
 ## 目录结构
 ```
@@ -31,13 +38,15 @@ src/
   pages/
     index.tsx           # 首页（根目录）
     [...path].tsx       # 文件/文件夹动态路由（catch-all）
-    _app.tsx            # 全局入口：注册图标、进度条、Analytics、翻译
+    _app.tsx            # 全局入口：注册图标、进度条、Analytics、翻译、CookiesProvider
     _document.tsx       # 注入 Google Fonts、站点 favicon、描述信息
     api/                # 服务端 API 路由（见「API 路由」）
     onedrive-vercel-index-oauth/  # 三步骤 OAuth 授权向导（step-1/2/3）
-  styles/               # globals.css、markdown-github.css
+  styles/               # globals.css（Tailwind v4）、markdown-github.css
   types/index.d.ts      # OneDrive API 返回对象的 TypeScript 类型
   utils/                # 工具函数（见「关键工具」）
+eslint.config.mjs       # ESLint 9 flat config（Next + Prettier 规则）
+pnpm-workspace.yaml     # pnpm 11 配置（allowBuilds / overrides / blockExoticSubdeps）
 ```
 
 ## 配置中心
@@ -50,7 +59,7 @@ src/
 - `baseDirectory`：要公开分享的 OneDrive 根目录，默认 `/Share`；设为 `/` 表示分享整个网盘根。
 - `maxItems`：单目录最多列出的条目数（分页），受 OneDrive API 200 条上限约束。
 - `protectedRoutes`：需要密码保护的目录路径数组（指向存放了 `.password` 文件的目录）。
-- `footer` / `links` / `email` / `datetimeFormat`：页脚、社交媒体链接、邮箱、时间格式。
+- `footer` / `links` / `email` / `datetimeFormat`：页脚、社交媒体链接、邮箱、时间格式。页脚年份用 `%YEAR%` 占位符，由 `Footer.tsx` 在客户端填充当前年份。
 - `googleFontSans` / `googleFontMono` / `googleFontLinks`：Google Fonts 字体定制。
 - `kvPrefix`：Redis KV 键前缀（可用 `KV_PREFIX` 环境变量覆盖）。
 
@@ -76,7 +85,7 @@ OneDrive API 与 OAuth 凭据：
 
 ## 认证与安全
 - **OAuth 向导**：`src/pages/onedrive-vercel-index-oauth/step-1/2/3.tsx` 引导用户完成微软授权，拿到 access/refresh token。
-- **token 存取**：`src/utils/odAuthTokenStore.ts` 用 Redis(Upstash) 存取 `access_token`（带过期）与 `refresh_token`，键名带 `siteConfig.kvPrefix` 前缀。
+- **token 存取**：`src/utils/odAuthTokenStore.ts` 用 Redis(Upstash) 存取 `access_token`（带过期）与 `refresh_token`，键名带 `siteConfig.kvPrefix` 前缀。Redis 客户端已挂 `error` 监听（ioredis 6 连接失败时不会以未处理异常抛出）。
 - **token 混淆**：`src/utils/oAuthHandler.ts` 用 CryptoJS AES（密钥 `onedrive-vercel-index`）做 `obfuscateToken`/`revealObfuscatedToken`，token 在传输与存储时均混淆。真实客户端密钥通过 `revealObfuscatedToken(apiConfig.obfuscatedClientSecret)` 还原。
 - **受保护目录**：目录中放一个 `.password` 文件即成为密码保护目录。前端把用户输入的密码做 SHA256 后通过 `od-protected-token` 请求头 / `odpt` 查参携带；`src/utils/protectedRouteHandler.ts` 负责 `getStoredToken`、`matchProtectedRoute`、`compareHashedToken`。
 
@@ -88,21 +97,22 @@ OneDrive API 与 OAuth 凭据：
 - `fileDetails.ts`：`humanFileSize`（文件大小人性化）与 `formatModifiedDateTime`（用 dayjs 按 `siteConfig.datetimeFormat` 格式化时间）。
 - `getBaseUrl.ts` / `getReadablePath.ts`：取站点基地址 / 把路径做成可读但仍合法的 URL。
 - `protectedRouteHandler.ts` / `oAuthHandler.ts` / `odAuthTokenStore.ts`：见上文「认证与安全」。
-- `useDeviceOS.ts` / `useLocalStorage.ts`：设备系统检测 / 带事件同步的 localStorage hook。
+- `useDeviceOS.ts` / `useLocalStorage.ts`：设备系统检测 / 带事件同步的 localStorage hook（挂载后异步一帧更新，遵守 react-hooks 新规则）。
 
 ## 前端组件（`src/components/`）
-- 布局与导航：`Navbar`（导航 + Ctrl/⌘+K 搜索）、`Breadcrumb`、`Footer`、`SwitchLayout`（列表/网格切换）、`SwitchLang`（语言切换）。
+- 布局与导航：`Navbar`（导航 + Ctrl/⌘+K 搜索）、`Breadcrumb`、`Footer`（客户端填充 `%YEAR%` 年份）、`SwitchLayout`（列表/网格切换）、`SwitchLang`（语言切换，`useCookies` 依赖全局 `CookiesProvider`）。
 - 列表：`FileListing`（核心，含文件预览逻辑）、`FolderGridLayout`、`FolderListLayout`。
 - 下载：`DownloadBtnGtoup`、`MultiFileDownloader`（多文件/整文件夹 zip 下载）、`CustomEmbedLinkMenu`（自定义直链）。
 - 其它：`Auth`（密码弹窗）、`SearchModal`（搜索弹窗）、`Loading`、`FourOhFour`（404）。
-- 预览：`previews/` 下 `DefaultPreview`、`MarkdownPreview`、`CodePreview`、`TextPreview`、`PDFPreview`、`EPUBPreview`、`OfficePreview`、`ImagePreview`、`AudioPreview`、`VideoPreview`、`URLPreview`、`Containers`。部分涉及浏览器的预览（Office/音视频/PDF/EPUB）用 `dynamic(..., { ssr: false })` 关闭 SSR。
+- 预览：`previews/` 下 `DefaultPreview`、`MarkdownPreview`、`CodePreview`、`TextPreview`、`PDFPreview`、`EPUBPreview`、`OfficePreview`、`ImagePreview`、`AudioPreview`、`VideoPreview`、`URLPreview`、`Containers`。
+- 涉及浏览器的预览均用 `dynamic(..., { ssr: false })` 关闭 SSR（Office/音视频/PDF/EPUB，以及 Markdown/Code——后者因 `react-syntax-highlighter` 16 的 CJS 构建无法在 SSR 中 require ESM-only 的 `refractor`，必须仅在客户端加载）。
 
 ## 常用脚本（`package.json`）
 - `pnpm dev`：本地开发（Next dev，会按需刷新翻译文件）。
-- `pnpm build` / `pnpm start`：生产构建 / 启动。
-- `pnpm lint`：ESLint（Next + Prettier 配置）。
+- `pnpm build` / `pnpm start`：生产构建（Next 16 默认 Turbopack）/ 启动。
+- `pnpm lint`：`eslint .`（ESLint 9 flat config，配置见 `eslint.config.mjs`）。
 - `pnpm format`：Prettier 格式化 `src/**/*.{js,ts,jsx,tsx}`（`printWidth:120`、无分号、单引号）。
-- `pnpm extract`：i18next 翻译提取（配置见 `i18next-parser.config.js`）。
+- `pnpm extract`：i18next 翻译提取（配置见 `i18next-parser.config.js`，注意该包已弃用，改动翻译后输出会重排文件）。
 - 新依赖建议忽略 peer 冲突（`.npmrc` 已设 `strict-peer-dependencies=false`）。
 
 ## 环境变量
@@ -119,5 +129,10 @@ OneDrive API 与 OAuth 凭据：
 
 ## 已知注意点
 - `next.config.js` 开启 `trailingSlash: true`，这是 Next i18n 配合 API 路由所必需的（否则 API 可能 404）。
+- pnpm 11 的配置（`allowBuilds`、`overrides`、`blockExoticSubdeps`）一律写在 `pnpm-workspace.yaml`，不再读取 `package.json` 的 `pnpm` 字段；后者仅作为 Vercel 侧 pnpm 9/10 的兼容备份。
+- 本机网络直连 npmjs 慢，安装依赖建议：`pnpm install --no-frozen-lockfile --registry=https://registry.npmmirror.com`（CI 环境需同时设 `$env:CI='true'`）。
+- 推送 GitHub 直连可能超时，可临时走本机代理：`git -c http.proxy=http://127.0.0.1:7897 push origin main`（代理端口以本机为准）。
+- `next-i18next` 配置在 `serverSideTranslations` 调用处显式传入（`next-i18next.config.js`），不依赖运行时查找配置文件；改配置需同步 JSDoc 类型标注。
+- Turbopack 构建有持久化缓存：修改 CSS/配置后若仍报旧错误，再次构建（内容变更会使其失效），必要时可对比 `next build --webpack` 结果。
 - 站点标题、页脚、保护路由等在 `config/site.config.js` 中有中文内容，改动后有条件的可跑一次 `pnpm build` 验证。
 - 数据全部来自 OneDrive Graph API，本地无业务数据库（token 除外，存 Redis）。
