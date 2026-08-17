@@ -67,7 +67,7 @@ importers:
         version: 0.16.47
       mpegts.js:
         specifier: ^1.7.2
-        version: 1.8.1
+        version: 1.8.2
       next:
         specifier: ^16.3.0
         version: 16.3.1(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.2.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -2909,8 +2909,8 @@ packages:
     resolution: {integrity: sha512-Bq72L2oi/isYSy0guN9ihNhAMQOyZEwts+Bezm/1U+wh8bQ+fVQ2ZiUoJJjceOMiiKv/BUrA0NF98jFc81CB6w==}
     engines: {node: 20 || 22 || 24}
 
-  mpegts.js@1.8.1:
-    resolution: {integrity: sha512-mQ2daxqBaS+QmBYTmJMDUGwAOw08534b08KSyqUGkjkhuBODNod15j8pnRfVEIQVWulKNe201/6UqILe4m4YRQ==}
+  mpegts.js@1.8.2:
+    resolution: {integrity: sha512-cZYMa5muASH55wrS6JK5IGkUqnCA96c0f+WdnW91jIK9s/N6NzjmTQDJNYg9A5u/G2Q5nj2b3w1Zwzze/9guxA==}
     engines: {node: '>=20.9.0'}
 
   ms@2.0.0:
@@ -7074,7 +7074,7 @@ snapshots:
 
   mktemp@2.0.3: {}
 
-  mpegts.js@1.8.1:
+  mpegts.js@1.8.2:
     dependencies:
       es6-promise: 4.2.8
       events: 3.3.0
