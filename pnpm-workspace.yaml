@@ -4,6 +4,9 @@ packages:
 # 允许 mpegts.js 传递的 exotic 依赖（webworkify-webpack，已通过 overrides 固定为 url tarball）
 blockExoticSubdeps: false
 
+# 关闭 pnpm 11 的 24 小时最小发布年龄校验，避免 Renovate 更新刚发布的依赖时锁文件生成失败
+minimumReleaseAge: 0
+
 # pnpm 11 默认拦截依赖的构建脚本，这里显式放行所需包
 allowBuilds:
   core-js: true

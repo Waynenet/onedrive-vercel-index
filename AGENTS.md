@@ -24,7 +24,7 @@
 - Next.js `16.3.0`、React/ReactDOM `19.2.8`、Tailwind CSS `4.3.3`、`@headlessui/react 2`、`react-markdown 10`、`next-i18next 16`、`react-cookie 8`、`ioredis 6`。
 - TypeScript 固定 `^6.0.3`（TS 7 为刚发布的原生编译器，typescript-eslint 尚未支持）。
 - ESLint 固定 `^9.39.5`（ESLint 10 的 scopeManager API 尚未被 typescript-eslint 8.66 实现），使用 **flat config**（`eslint.config.mjs`），`lint` 脚本为 `eslint .`。
-- `package.json` 声明 `packageManager: pnpm@11.20.0` 并同步写有 `pnpm.overrides`（兼容 Vercel 侧 pnpm 9/10 读取，避免 lockfile overrides 不匹配）。
+- `package.json` 声明 `packageManager: pnpm@11.21.0`；旧的 `pnpm.overrides` 已移除，overrides 只写在 `pnpm-workspace.yaml`，并在其中设 `minimumReleaseAge: 0` 避免 Renovate 更新刚发布的依赖时锁文件生成失败。
 
 ## 目录结构
 ```
@@ -46,7 +46,7 @@ src/
   types/index.d.ts      # OneDrive API 返回对象的 TypeScript 类型
   utils/                # 工具函数（见「关键工具」）
 eslint.config.mjs       # ESLint 9 flat config（Next + Prettier 规则）
-pnpm-workspace.yaml     # pnpm 11 配置（allowBuilds / overrides / blockExoticSubdeps）
+pnpm-workspace.yaml     # pnpm 11 配置（allowBuilds / overrides / blockExoticSubdeps / minimumReleaseAge）
 ```
 
 ## 配置中心
@@ -129,7 +129,7 @@ OneDrive API 与 OAuth 凭据：
 
 ## 已知注意点
 - `next.config.js` 开启 `trailingSlash: true`，这是 Next i18n 配合 API 路由所必需的（否则 API 可能 404）。
-- pnpm 11 的配置（`allowBuilds`、`overrides`、`blockExoticSubdeps`）一律写在 `pnpm-workspace.yaml`，不再读取 `package.json` 的 `pnpm` 字段；后者仅作为 Vercel 侧 pnpm 9/10 的兼容备份。
+- pnpm 11 的配置（`allowBuilds`、`overrides`、`blockExoticSubdeps`、`minimumReleaseAge`）一律写在 `pnpm-workspace.yaml`，`package.json` 不再保留 legacy `pnpm` 字段，以免 pnpm 11 打印“配置被忽略”的 WARN。
 - 本机网络直连 npmjs 慢，安装依赖建议：`pnpm install --no-frozen-lockfile --registry=https://registry.npmmirror.com`（CI 环境需同时设 `$env:CI='true'`）。
 - 推送 GitHub 直连可能超时，可临时走本机代理：`git -c http.proxy=http://127.0.0.1:7897 push origin main`（代理端口以本机为准）。
 - `next-i18next` 配置在 `serverSideTranslations` 调用处显式传入（`next-i18next.config.js`），不依赖运行时查找配置文件；改配置需同步 JSDoc 类型标注。
