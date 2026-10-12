@@ -24,7 +24,7 @@
 - Next.js `16.3.0`、React/ReactDOM `19.2.8`、Tailwind CSS `4.3.3`、`@headlessui/react 2`、`react-markdown 10`、`next-i18next 16`、`react-cookie 8`、`ioredis 6`。
 - TypeScript 固定 `^6.0.3`（TS 7 为刚发布的原生编译器，typescript-eslint 尚未支持）。
 - ESLint 固定 `^9.39.5`（ESLint 10 的 scopeManager API 尚未被 typescript-eslint 8.66 实现），使用 **flat config**（`eslint.config.mjs`），`lint` 脚本为 `eslint .`。
-- `package.json` 声明 `packageManager: pnpm@11.21.0`，并保留 legacy `pnpm.overrides` 供 Vercel 自动选择的 pnpm 9 读取；`pnpm-workspace.yaml` 另设 `minimumReleaseAge: 0`，避免 pnpm 11.22 的锁文件发布年龄校验让 Renovate artifact 更新失败。
+- `package.json` 声明 `packageManager: pnpm@11.25.0`，并保留 legacy `pnpm.overrides` 供 Vercel 自动选择的 pnpm 9 读取；`pnpm-workspace.yaml` 另设 `minimumReleaseAge: 0`，避免 pnpm 11.22 的锁文件发布年龄校验让 Renovate artifact 更新失败。
 
 ## 目录结构
 ```
@@ -129,6 +129,7 @@ OneDrive API 与 OAuth 凭据：
 
 ## 已知注意点
 - `next.config.js` 开启 `trailingSlash: true`，这是 Next i18n 配合 API 路由所必需的（否则 API 可能 404）。
+- `allowBuilds` 必须列全所有带构建脚本的传递依赖（当前：`core-js`、`es5-ext`、`esbuild`、`unrs-resolver`，后者由 eslint 链路引入）。pnpm 11 会以 `ERR_PNPM_IGNORED_BUILDS` 致命错误终止安装，Vercel 构建因此失败；依赖升级后若出现新的被忽略构建脚本，按日志补进 `allowBuilds` 即可。
 - pnpm 11 的配置（`allowBuilds`、`overrides`、`blockExoticSubdeps`、`minimumReleaseAge`）写在 `pnpm-workspace.yaml`；`package.json` 中的 legacy `pnpm.overrides` 是 Vercel pnpm 9 的兼容配置，不要移除。pnpm 11 会打印“配置被忽略”的 WARN，但不会导致安装失败。
 - 本机网络直连 npmjs 慢，安装依赖建议：`pnpm install --no-frozen-lockfile --registry=https://registry.npmmirror.com`（CI 环境需同时设 `$env:CI='true'`）。
 - 推送 GitHub 直连可能超时，可临时走本机代理：`git -c http.proxy=http://127.0.0.1:7897 push origin main`（代理端口以本机为准）。

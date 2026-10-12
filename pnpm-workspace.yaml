@@ -12,6 +12,7 @@ allowBuilds:
   core-js: true
   es5-ext: true
   esbuild: true
+  unrs-resolver: true
 
 overrides:
   # mpegts.js 依赖的 webworkify-webpack 是 git 依赖，固定到与 lockfile 一致的 tarball，避免 SSH/git 解析
