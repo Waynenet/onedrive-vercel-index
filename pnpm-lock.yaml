@@ -73,7 +73,7 @@ importers:
         version: 16.4.2(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next-i18next:
         specifier: ^16.0.10
-        version: 16.3.2(@types/react@19.3.0)(i18next@26.4.7(typescript@6.0.3))(next@16.4.2(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-i18next@17.0.20(i18next@26.4.7(typescript@6.0.3))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3))(react@19.3.1)
+        version: 16.4.1(@types/react@19.3.0)(i18next@26.4.7(typescript@6.0.3))(next@16.4.2(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-i18next@17.0.20(i18next@26.4.7(typescript@6.0.3))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3))(react@19.3.1)
       nextjs-progressbar:
         specifier: ^0.0.16
         version: 0.0.16(next@16.4.2(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
@@ -2926,14 +2926,21 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  next-i18next@16.3.2:
-    resolution: {integrity: sha512-baUuVXgQoYV3Uv6aI/dLhMDSrtQISrrcJvcylUeVL2NIDqwmk3e0mQpXEwRc0mcnzd/j8EgoZUWOCWE//Q43aw==}
+  next-i18next@16.4.1:
+    resolution: {integrity: sha512-SEFE1aL10DXBI2CNYLRxDRio+el2YmiKELEwhAGj3JA7cJxiliK6YKBMWTsOC7hJWRTeWFpiHrAe3pFyqweBEw==}
     engines: {node: '>=20'}
     peerDependencies:
       i18next: '>= 23.7.13'
+      i18next-icu: '>= 2.0.0'
+      i18next-mf2: '>= 1.0.0'
       next: '>= 14.1.0'
       react: '>= 18.0.0'
       react-i18next: '>= 14.0.0'
+    peerDependenciesMeta:
+      i18next-icu:
+        optional: true
+      i18next-mf2:
+        optional: true
 
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
@@ -7081,7 +7088,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next-i18next@16.3.2(@types/react@19.3.0)(i18next@26.4.7(typescript@6.0.3))(next@16.4.2(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-i18next@17.0.20(i18next@26.4.7(typescript@6.0.3))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3))(react@19.3.1):
+  next-i18next@16.4.1(@types/react@19.3.0)(i18next@26.4.7(typescript@6.0.3))(next@16.4.2(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-i18next@17.0.20(i18next@26.4.7(typescript@6.0.3))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3))(react@19.3.1):
     dependencies:
       '@types/hoist-non-react-statics': 3.3.7(@types/react@19.3.0)
       hoist-non-react-statics: 3.3.2
