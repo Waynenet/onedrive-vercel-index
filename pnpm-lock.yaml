@@ -73,7 +73,7 @@ importers:
         version: 16.4.6(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       next-i18next:
         specifier: ^16.0.10
-        version: 16.5.2(@types/react@19.3.1)(i18next@26.7.2(typescript@6.0.3))(next@16.4.6(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-i18next@17.1.13(i18next@26.7.2(typescript@6.0.3))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3))(react@19.3.1)
+        version: 16.5.2(@types/react@19.3.3)(i18next@26.7.2(typescript@6.0.3))(next@16.4.6(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-i18next@17.1.13(i18next@26.7.2(typescript@6.0.3))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3))(react@19.3.1)
       nextjs-progressbar:
         specifier: ^0.0.16
         version: 0.0.16(next@16.4.6(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)
@@ -94,7 +94,7 @@ importers:
         version: 0.17.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react-cookie:
         specifier: ^8.1.2
-        version: 8.1.2(@types/react@19.3.1)(react@19.3.1)
+        version: 8.1.2(@types/react@19.3.3)(react@19.3.1)
       react-copy-to-clipboard:
         specifier: ^5.1.1
         version: 5.1.1(react@19.3.1)
@@ -103,7 +103,7 @@ importers:
         version: 19.3.1(react@19.3.1)
       react-hot-toast:
         specifier: ^2.4.0
-        version: 2.6.1(@types/react-dom@19.3.0(@types/react@19.3.1))(@types/react@19.3.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        version: 2.6.1(@types/react-dom@19.3.0(@types/react@19.3.3))(@types/react@19.3.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react-hotkeys-hook:
         specifier: ^5.3.3
         version: 5.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -112,7 +112,7 @@ importers:
         version: 17.1.13(i18next@26.7.2(typescript@6.0.3))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3)
       react-markdown:
         specifier: ^10.1.0
-        version: 10.1.0(@types/react@19.3.1)(react@19.3.1)(supports-color@7.2.0)
+        version: 10.1.0(@types/react@19.3.3)(react@19.3.1)(supports-color@7.2.0)
       react-reader:
         specifier: ^2.0.15
         version: 2.0.15(react@19.3.1)
@@ -158,13 +158,13 @@ importers:
         version: 26.6.10
       '@types/react':
         specifier: ^19.2.18
-        version: 19.3.1
+        version: 19.3.3
       '@types/react-copy-to-clipboard':
         specifier: ^5.0.4
         version: 5.0.7
       '@types/react-dom':
         specifier: ^19.2.4
-        version: 19.3.0(@types/react@19.3.1)
+        version: 19.3.0(@types/react@19.3.3)
       '@types/react-syntax-highlighter':
         specifier: ^15.5.6
         version: 15.5.13
@@ -1057,8 +1057,8 @@ packages:
   '@types/react-syntax-highlighter@15.5.13':
     resolution: {integrity: sha512-uLGJ87j6Sz8UaBAooU0T6lWJ0dBmjZgN1PZTrj05TNql2/XpC6+4HhMT5syIdFUUt+FASfCeLLv4kBygNU+8qA==}
 
-  '@types/react@19.3.1':
-    resolution: {integrity: sha512-HNTkBIm8zmHX8LUXX2vtZ/ONzehrV1J3abl2fUIiZ5qxTYRCj/z+rDeFwOltqCLl9lRdUTKWT41OLtYuFV/Arg==}
+  '@types/react@19.3.3':
+    resolution: {integrity: sha512-K8uWpJc4teiuOPdiP1umjeA9rGMgVPiXuoL66fcS1QlwBT1WMqY8PORmub9FadopIs+RCW6siYEs7Lpq+vDlog==}
 
   '@types/symlink-or-copy@1.2.2':
     resolution: {integrity: sha512-MQ1AnmTLOncwEf9IVU+B2e4Hchrku5N67NkgcAHW0p3sdzPe0FNMANxEm6OJUzPniEQGkeT3OROLlCwZJLWFZA==}
@@ -4672,9 +4672,9 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/hoist-non-react-statics@3.3.7(@types/react@19.3.1)':
+  '@types/hoist-non-react-statics@3.3.7(@types/react@19.3.3)':
     dependencies:
-      '@types/react': 19.3.1
+      '@types/react': 19.3.3
       hoist-non-react-statics: 3.3.2
 
   '@types/json-schema@7.0.15': {}
@@ -4705,17 +4705,17 @@ snapshots:
 
   '@types/react-copy-to-clipboard@5.0.7':
     dependencies:
-      '@types/react': 19.3.1
+      '@types/react': 19.3.3
 
-  '@types/react-dom@19.3.0(@types/react@19.3.1)':
+  '@types/react-dom@19.3.0(@types/react@19.3.3)':
     dependencies:
-      '@types/react': 19.3.1
+      '@types/react': 19.3.3
 
   '@types/react-syntax-highlighter@15.5.13':
     dependencies:
-      '@types/react': 19.3.1
+      '@types/react': 19.3.3
 
-  '@types/react@19.3.1':
+  '@types/react@19.3.3':
     dependencies:
       csstype: 3.2.4
 
@@ -7142,9 +7142,9 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next-i18next@16.5.2(@types/react@19.3.1)(i18next@26.7.2(typescript@6.0.3))(next@16.4.6(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-i18next@17.1.13(i18next@26.7.2(typescript@6.0.3))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3))(react@19.3.1):
+  next-i18next@16.5.2(@types/react@19.3.3)(i18next@26.7.2(typescript@6.0.3))(next@16.4.6(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.10)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-i18next@17.1.13(i18next@26.7.2(typescript@6.0.3))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3))(react@19.3.1):
     dependencies:
-      '@types/hoist-non-react-statics': 3.3.7(@types/react@19.3.1)
+      '@types/hoist-non-react-statics': 3.3.7(@types/react@19.3.3)
       hoist-non-react-statics: 3.3.2
       i18next: 26.7.2(typescript@6.0.3)
       i18next-resources-to-backend: 1.2.3
@@ -7152,7 +7152,7 @@ snapshots:
       react: 19.3.1
       react-i18next: 17.1.13(i18next@26.7.2(typescript@6.0.3))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(typescript@6.0.3)
     optionalDependencies:
-      '@types/react': 19.3.1
+      '@types/react': 19.3.3
 
   next-tick@1.1.0: {}
 
@@ -7447,9 +7447,9 @@ snapshots:
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
 
-  react-cookie@8.1.2(@types/react@19.3.1)(react@19.3.1):
+  react-cookie@8.1.2(@types/react@19.3.3)(react@19.3.1):
     dependencies:
-      '@types/hoist-non-react-statics': 3.3.7(@types/react@19.3.1)
+      '@types/hoist-non-react-statics': 3.3.7(@types/react@19.3.3)
       hoist-non-react-statics: 3.3.2
       react: 19.3.1
       universal-cookie: 8.1.2
@@ -7467,15 +7467,15 @@ snapshots:
       react: 19.3.1
       scheduler: 0.28.0
 
-  react-hot-toast@2.6.1(@types/react-dom@19.3.0(@types/react@19.3.1))(@types/react@19.3.1)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
+  react-hot-toast@2.6.1(@types/react-dom@19.3.0(@types/react@19.3.3))(@types/react@19.3.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
       csstype: 3.2.4
       goober: 2.1.16(csstype@3.2.4)
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
     optionalDependencies:
-      '@types/react': 19.3.1
-      '@types/react-dom': 19.3.0(@types/react@19.3.1)
+      '@types/react': 19.3.3
+      '@types/react-dom': 19.3.0(@types/react@19.3.3)
 
   react-hotkeys-hook@5.4.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
     dependencies:
@@ -7495,11 +7495,11 @@ snapshots:
 
   react-is@16.13.1: {}
 
-  react-markdown@10.1.0(@types/react@19.3.1)(react@19.3.1)(supports-color@7.2.0):
+  react-markdown@10.1.0(@types/react@19.3.3)(react@19.3.1)(supports-color@7.2.0):
     dependencies:
       '@types/hast': 3.0.5
       '@types/mdast': 4.0.4
-      '@types/react': 19.3.1
+      '@types/react': 19.3.3
       devlop: 1.1.0
       hast-util-to-jsx-runtime: 2.3.6(supports-color@7.2.0)
       html-url-attributes: 3.0.1
